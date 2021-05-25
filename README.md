@@ -1,5 +1,9 @@
 # Folder Organizer Tool - Made by Hoswoo/Hosua
- This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection.
+This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection.
+
+CHANGELOG:
+5/24/2021 - First revision released
+5/25/2021 - Added Extract duplicate ROM function
 
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
@@ -92,6 +96,22 @@ I mainly put this here to let the user verify that they are actually in the righ
 It will simply show you the directory.
 
 ![14](https://user-images.githubusercontent.com/22788738/119491210-aab27e80-bd2b-11eb-82bc-147c86e2e607.png)
+
+6) Extract Duplicate ROMs 
+
+This function will look through a directory and move duplicate titles to their own directory. 
+Note that this will only work if your ROMs are properly titled. It will also detect multiple disk ROMs as duplicates too, so please bear that in mind.
+
+Once again, when you select this option, you will be prompted to type y to confirm.
+
+![15](https://user-images.githubusercontent.com/22788738/119540937-01d04780-bd5c-11eb-8b44-4f118df13dc3.png)
+
+Assuming everything went well, your duplicate ROMs should now be in there own folder!
+
+![16](https://user-images.githubusercontent.com/22788738/119541818-d7cb5500-bd5c-11eb-8161-c4215abfadc7.png)
+
+
+
 
 
 
