@@ -29,7 +29,7 @@ The easiest way to get this path is navigate to the folder via file explorer, th
 
 Once you enter a valid folder path, you will be given the following options.
 
-![2](https://user-images.githubusercontent.com/22788738/119487552-89e82a00-bd27-11eb-87a9-1dd84a19f451.png)
+![2](https://user-images.githubusercontent.com/22788738/119545166-81601580-bd60-11eb-91bb-7f960d32ce23.png)
 
 1) Remove all except
 
