@@ -53,7 +53,7 @@ Once again it will show you the files being deleted.
 
 ![7](https://user-images.githubusercontent.com/22788738/119489771-0aa82580-bd2a-11eb-8012-5e999e6dbc29.png)
 
-And assuming everything went well, it the files you didn't want should be deleted.
+And assuming everything went well, the files you didn't want should be deleted.
 
 3) Alphabetize Folders
 
