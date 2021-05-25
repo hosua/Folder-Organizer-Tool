@@ -12,7 +12,7 @@ using std::filesystem::directory_iterator;
 
 std::filesystem::path getDir() {	// Ask user to enter a directory
 	std::string dirPath;
-	std::cout << "Enter the full directory path (right click to copy & paste on Windows)\n";	
+	std::cout << "Enter the full directory path (right click to copy & paste)\n";	
 	std::getline(std::cin, dirPath);	// This will std::cin the entire line instead ending at a space.
 	std::filesystem::path pathObj(dirPath);
 	if (!std::filesystem::exists(dirPath)) {
@@ -195,6 +195,13 @@ void unalphabetizeFolder(std::filesystem::path path) {	// Moves all files/direct
 }
 int main()
 {
+	std::cout << "Folder Organizer Tool\n\n";
+	std::cout << "  __  __           _        _             _   _                               \n";
+	std::cout << " |  \\/  | __ _  __| | ___  | |__  _   _  | | | | ___  _____      _____   ___  \n";
+	std::cout << " | |\\/| |/ _` |/ _` |/ _ \\ | '_ \\| | | | | |_| |/ _ \\/ __\\ \\ /\\ / / _ \\ / _ \\ \n";
+	std::cout << " | |  | | (_| | (_| |  __/ | |_) | |_| | |  _  | (_) \\__ \\\\ V  V / (_) | (_) |\n";
+	std::cout << " |_|  |_|\\__,_|\\__,_|\\___| |_.__/ \\__, | |_| |_|\\___/|___/ \\_/\\_/ \\___/ \\___/ \n";
+	std::cout << "                                  |___/                                       \n\n\n";
 	std::cout << "DISCLAIMER: I am NOT responsible if anything goes wrong either due to bugs or user-negligence.\n";
 	std::cout << "Please be careful and back up any files before using this tool!\n\n";
 	bool badDir = true;
