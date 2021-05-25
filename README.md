@@ -2,7 +2,9 @@
 This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection.
 
 CHANGELOG:
+
 5/24/2021 - First revision released
+
 5/25/2021 - Added Extract duplicate ROM function
 
 DISCLAIMER: 
