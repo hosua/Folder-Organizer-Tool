@@ -17,7 +17,7 @@ When you first open the program, you will be prompted to enter the directory to 
 
 ![1](https://user-images.githubusercontent.com/22788738/119487284-2eb63780-bd27-11eb-84b0-4b78078a5261.png)
 
-The easiest way to get this path is to copy it from the file explorer from here.
+The easiest way to get this path is navigate to the folder via file explorer, then copy the path from here.
 
 ![copy](https://user-images.githubusercontent.com/22788738/119487089-f7478b00-bd26-11eb-9a68-d7cb82cfac13.png)
 
@@ -26,6 +26,7 @@ Once you enter a valid folder path, you will be given the following options.
 ![2](https://user-images.githubusercontent.com/22788738/119487552-89e82a00-bd27-11eb-87a9-1dd84a19f451.png)
 
 1) Remove all except
+
 This will take text entered by the user. The program will go through the entire folder, and delete anything that does not contain this text.
 Let's say I have a huge folder containing ROMs from many regions but only wanted to keep one.
 In this case, the US ROMs in this folder are labelled as "(U)", therefore that is what I will type because I want to keep all of the US ROMs in the folder.
