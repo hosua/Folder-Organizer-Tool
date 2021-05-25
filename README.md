@@ -1,6 +1,16 @@
 # Folder Organizer Tool - Made by Hoswoo/Hosua
  This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection.
 
+DISCLAIMER: 
+There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
+
+
+Some issues that I am aware of (If you find more, please let me know):
+1) There is no way to change the directory while the program is running, simply restart the program to do this.
+2) If you modify the folders externally while running the program, it will potentially mess things up.
+3) The source code is incompatible with Linux (and I assume also Mac)
+
+
 How to use:
 
 When you first open the program, you will be prompted to enter the directory to the folder you want to modify.
@@ -31,6 +41,7 @@ It will now show you something like this, and all of the files you didn't want s
 ![5](https://user-images.githubusercontent.com/22788738/119489045-3e368000-bd29-11eb-8865-5b369938390a.png)
 
 2) Remove all files containing
+
 This is essentially the opposite of the previous function.
 Let's say I wanted to only remove files containing Japanese ROMs in the same folder.
 Similar to last time, I would type in (J) to do this. This time it will remove everything containing (J) that's in the folder.
@@ -44,6 +55,7 @@ Once again it will show you the files being deleted.
 And assuming everything went well, it the files you didn't want should be deleted.
 
 3) Alphabetize Folders
+
 First, I would like to note that you probably will only find this feature useful if you have a seriously huge amount of ROMs.
 What this will do is make folders from #, and A-Z. Then, it will sort all the files into their respective folders.
 
@@ -59,6 +71,7 @@ NOTE: If any folders are empty after this process, they will automatically be de
 ![10](https://user-images.githubusercontent.com/22788738/119490501-e862d780-bd2a-11eb-98b5-ac7e6f99916b.png)
 
 4) Unalphabetize Folders
+
 This should be self explanatory, this essentially undoes what Alphabetize Folders does.
 Once again, you will be prompted with the same message.
 
@@ -73,6 +86,7 @@ Once it's done, your folders will be unorganized again.
 ![13](https://user-images.githubusercontent.com/22788738/119491000-750d9580-bd2b-11eb-8b5f-e25753ff23ab.png)
 
 5) Show directory
+
 I mainly put this here to let the user verify that they are actually in the right folder.
 It will simply show you the directory.
 
