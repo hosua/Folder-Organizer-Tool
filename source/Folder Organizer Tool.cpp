@@ -116,48 +116,81 @@ void removeAllContaining(vector<filesystem::path> dirList) {
 	}
 	cout << "\n\nAll done!\n\n";
 }
-void alphabetizeFolder(filesystem::path path) {	// Organizes all files in a directory to alphabetical folders.
-	string user_opt;
+void alphabetizeFolder(filesystem::path rootDir) {	// Organizes all files in a directory to alphabetical folders.
+	string userOpt;
+	int numLetters;
+	cout << "How many letters do you wish to have per directory?\n";	// This causes an infinite loop when trying to handle invalid inputs. IDK why...
+	cin >> numLetters;
+	bool badInput = true;
 	cout << "Are you sure you wish to do this? (y/n)";
-	cin >> user_opt;
-	if (user_opt != "y") {
-		cout << "User entered 'n' or input was invalid.\n Exiting the program...";
+	cin >> userOpt;
+	if (userOpt != "y") {
+		cout << "User entered 'n' or input was invalid.\nExiting...";
 		return;
 	}
-	auto dirList = getDirList(path);
-	const filesystem::path rootDir = path;	
-    string alphabetUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";	// Get every letter in alphabet
-	string alphabetLower = "abcdefghijklmnopqrstuvwxyz";
+	auto dirList = getDirList(rootDir);
+	string alphaLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";	// Get every letter in alphabet
 
-	filesystem::create_directory("#");
-	cout << "Created folder named '#'.\n";
-	for(char c : alphabetUpper){	// Create folders for all letters
-		string letter = string (1, c);	// This is how you convert a char to its letter string 
-		filesystem::create_directory(letter);
-		cout << "Created folder named '" + letter + "'.\n";
+	vector<string> alphaList;	// First, get all folder names into a list.
+	while (alphaLetters.size() > numLetters) {	
+		alphaList.push_back(alphaLetters.substr(0, numLetters));	// Get first numLetters
+		alphaLetters = alphaLetters.substr(numLetters, alphaLetters.size()); // Slice the string
 	}
-	// Then move each file into their corresponding folders
-	for (char ch : alphabetUpper) {	
-		filesystem::path letterPath = filesystem::path(rootDir.string()) / string(1, ch);	// Get each letter's directory
-		for (const auto &file : dirList) {
-			char firstLetter = toupper(file.stem().string()[0]);	// Ignore case sensitivity
-			if (firstLetter == ch) {	// If first letter of filename matches the letter we're currently iterating
-				cout << "Copying " + file.stem().string() + " to " + letterPath.stem().string() + ".\n";
-				filesystem::copy(file, letterPath);	// copy the file to that path
-				cout << "Removing " + file.stem().string() + " from " + rootDir.string() + ".\n";
-				filesystem::remove(file);	// remove the file after copying
+	alphaList.push_back(alphaLetters); // Push the last part of the string
+
+	vector<filesystem::path> alphaPathList;
+	
+	for (auto dirName : alphaList){	// Create the folders
+		filesystem::create_directory(dirName);
+		filesystem::path dirPath = filesystem::path(rootDir.string()) / dirName;	
+		alphaPathList.push_back(dirPath);
+		cout << "Created folder named '" + dirName + "' in " << rootDir << "\n\n";
+	}	
+	for (auto vect : alphaPathList) {
+		cout << vect.string() << "\n";
+	}
+	
+	for (auto alphaPath : alphaPathList) {	// This took me like 4 fucking hours to figure out wtf
+		string alphaName = alphaPath.stem().string();
+		cout << "alphaname:" << alphaName << "\n";
+		for (auto file : filesystem::directory_iterator(rootDir)) {
+			if (!filesystem::is_directory(file)) {
+				bool foundLetter = false;	
+				string fileName = file.path().stem().string();
+				char firstLetter = file.path().stem().string()[0];
+				if (alphaName.find(firstLetter) != string::npos) {	// If we found first Letter in the alpha name
+					foundLetter = true;
+
+					cout <<"First letter of " + fileName + ", " + firstLetter + " was found in " << alphaName << "\n";
+					cout << "copying " << fileName << " to " << alphaName << "\n";
+					filesystem::copy(file, alphaPath); // Copy that to alphaPath
+					cout << "removing " << fileName << " from " << alphaName << "\n";
+					filesystem::remove(file); // Remove it after
+				}
+				else {
+					cout << "Didn't find " << firstLetter << " in " << alphaName << ", ignoring...\n";
+				}
+				if (foundLetter)	// This will break out of the loop once we find the first letter to increase efficiency.
+					continue;
 			}
 		}
-	}	// After dealing with the alphabet, move the remaining files to the # folder.
-	dirList = getDirList(path);	// Update the list and check for what files 
-	filesystem::path hashPath = filesystem::path(rootDir.string()) / "#";
-	for (filesystem::path file : dirList) {
-		cout << "Copying " + file.stem().string() + " to " + hashPath.stem().string() + ".\n";
-		filesystem::copy(file, hashPath);	// copy the file to that path
-		cout << "Removing " + file.stem().string() + " from " + rootDir.string() + ".\n";
-		filesystem::remove(file);	// remove the file after copying it 
 	}
-	for (const auto & dir : directory_iterator(path)) {	// Remove any remaining directories that are empty
+
+	filesystem::create_directory("#");	// Make Unicode folder
+	cout << "Created folder named '#'.\n";
+	path hashPath = rootDir / "#";
+	cout << hashPath.string();
+	// Now that all alphabet letters are organized, we need to move the remaining to the '#' folder.
+	for (auto file : directory_iterator(rootDir)) {\
+		if (!is_directory(file)) {	// if a file
+			string fileName = file.path().stem().string();
+			cout << " copying " << fileName << " to " << hashPath << "\n";
+			copy(file, hashPath);
+			cout << " removing " << fileName << " from " << rootDir.string() << "\n";
+			remove(file);
+		}
+	}
+	for (const auto & dir : directory_iterator(rootDir)) {	// Remove any remaining directories that are empty
 		if (filesystem::is_empty(dir)) {
 			cout << "Removing \\" + dir.path().stem().string() + " from " + rootDir.string() + ".\n";
 			filesystem::remove(dir);
@@ -165,7 +198,7 @@ void alphabetizeFolder(filesystem::path path) {	// Organizes all files in a dire
 	}
 	cout << "\n\nAll done!\n\n";
 }	
-void unalphabetizeFolder(filesystem::path path) {	// Moves all files/directories from the subdirectory in the directory
+void unalphabetizeFolder(path path) {	// Moves all files/directories from the subdirectory in the directory
 	string user_opt;
 	cout << "Are you sure you wish to do this? (y/n)";
 	cin >> user_opt;
@@ -179,7 +212,6 @@ void unalphabetizeFolder(filesystem::path path) {	// Moves all files/directories
 						cout << "Removing " << subDir.path() << " from " + path.string() + ".\n";
 						filesystem::remove(subDir);
 					}
-
 				for (const auto & dir : directory_iterator(path)) {	// Remove any remaining directories that are empty
 					if (filesystem::is_empty(dir)) {
 						cout << "Removing \\" + dir.path().stem().string() + " from " + path.string() + ".\n";
@@ -196,16 +228,16 @@ void unalphabetizeFolder(filesystem::path path) {	// Moves all files/directories
 	}
 	cout << "\n\nAll done!\n\n";
 }
-void extractDuplicateTitles(filesystem::path path) {
+void extractDuplicateTitles(path dirPath) {
 	// The char we need to check for is '('
 	// This is where the title name should stop.
-	map<filesystem::path, string> dirMap;
-	filesystem::path pathObj(path);
+	map<path, string> dirMap;
+	path pathObj(dirPath);
 	vector<string> nameList;
 	
-	for (const auto & file : directory_iterator(path)) {
+	for (const auto & file : directory_iterator(dirPath)) {
 		char delim = '(';
-		filesystem::path filePath(file);
+		path filePath(file);
 		string fileName = file.path().stem().string();
 		int endPos = fileName.find(delim);
 		string nameNoRegion = fileName.substr(0, endPos);	// This will get just the title names
@@ -226,7 +258,7 @@ void extractDuplicateTitles(filesystem::path path) {
 	sort(dupeList.begin(), dupeList.end());	// This is how you remove duplicates in a vector. Source: https://stackoverflow.com/questions/1041620/whats-the-most-efficient-way-to-erase-duplicates-and-sort-a-vector
 	dupeList.erase(unique(dupeList.begin(), dupeList.end()), dupeList.end());
 
-	const filesystem::path rootDir = path;
+	const path rootDir = dirPath;
 
 	if (dupeList.size() > 0) {
 		cout << "\n";
@@ -242,8 +274,8 @@ void extractDuplicateTitles(filesystem::path path) {
 		cin >> user_opt;
 		if (user_opt == "y") {
 			filesystem::create_directory("Duplicates");
-			filesystem::path dupeDir = filesystem::path(rootDir.string()) / "Duplicates";
-			vector<filesystem::path> pathList;
+			path dupeDir = path(rootDir.string()) / "Duplicates";
+			vector<path> pathList;
 			for (auto const&[key, val] : dirMap) {	// Check through map and get all the duplicates now
 				if (std::binary_search(dupeList.begin(), dupeList.end(), val)) {	// This is a way to check if the element exists in the vector
 					pathList.push_back(key);	
@@ -251,9 +283,9 @@ void extractDuplicateTitles(filesystem::path path) {
 			}
 			for (int i = 0; i < pathList.size(); i++) {	// Now moving the dupes to the Duplicates folder
 				cout << "Copying " << pathList[i].stem().string() << " to " << dupeDir.string() << "\n";
-				filesystem::copy(pathList[i], dupeDir);
+				copy(pathList[i], dupeDir);
 				cout << "Removing " << pathList[i].stem().string() << " from " << rootDir.string() << "\n";
-				filesystem::remove(pathList[i]);
+				remove(pathList[i]);
 			}
 		}
 		else {
@@ -278,7 +310,7 @@ int main()
 	cout << "DISCLAIMER: I am NOT responsible if anything goes wrong either due to bugs or user-negligence.\n";
 	cout << "Please be careful and back up any files before using this tool!\n\n";
 	bool badDir = true;
-	filesystem::path dir;
+	path dir;
 
 	dir = getDir();	// Get directory path object
 	cout << "Directory: " << dir << "\n";
