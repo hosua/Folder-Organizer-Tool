@@ -9,7 +9,7 @@ CHANGELOG:
 
 5/26/2021 - Alphabetize letters now lets you pick how many letters you want to use per folder. - v0.6-alpha
 
-5/26/2021 - Output was displaying the wrong directories, this is now fixed. v0.6 removed because nothing else was changed. - v0.6.1
+5/26/2021 - Output was displaying the wrong directories, this is now fixed. v0.6 removed because nothing else was changed. - v0.6.1-alpha
 
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
