@@ -9,6 +9,8 @@ CHANGELOG:
 
 5/26/2021 - Alphabetize letters now lets you pick how many letters you want to use per folder v0.6-alpha
 
+5/26/2021 - Fixed incorrect text output and cleaned it a little. Functionally nothing is different from the last version. v0.6.1-alpha
+
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
 
@@ -74,7 +76,7 @@ First, it will ask you how many letters you want per folder. I will use 3 as an 
 
 Once again, just type y to confirm, if nothing went wrong, you will see something like this when it's finished.
 
-![9](https://user-images.githubusercontent.com/22788738/119675663-3e0eb100-be0b-11eb-8ac0-c353dd9cd2ec.png)
+![9](https://user-images.githubusercontent.com/22788738/119677940-22a4a580-be0d-11eb-9d46-0172ee00da61.png)
 
 After the process is complete, your directory should look something like this.
 NOTE: If any folders are empty after this process, they will automatically be deleted.
