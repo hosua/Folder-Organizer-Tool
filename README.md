@@ -74,7 +74,7 @@ First, it will ask you how many letters you want per folder. I will use 3 as an 
 
 Once again, just type y to confirm, if nothing went wrong, you will see something like this when it's finished.
 
-![9](https://user-images.githubusercontent.com/22788738/119655239-5d034800-bdf7-11eb-8813-ee65bacc0334.png)
+![9](https://user-images.githubusercontent.com/22788738/119675663-3e0eb100-be0b-11eb-8ac0-c353dd9cd2ec.png)
 
 After the process is complete, your directory should look something like this.
 NOTE: If any folders are empty after this process, they will automatically be deleted.
