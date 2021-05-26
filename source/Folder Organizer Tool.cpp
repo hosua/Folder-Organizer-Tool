@@ -205,7 +205,7 @@ void unalphabetizeFolder(path path) {	// Moves all files/directories from the su
 			try {
 				if (filesystem::is_directory(path))
 					for (const auto & subDir : directory_iterator(dir)) {	// For each file in the subdirectory
-						cout << "Copying " << subDir.path() << " to " << path << "\n";
+						cout << "Copying " << subDir.path().stem().string() << " to " << path << "\n";
 						filesystem::copy(subDir, path);
 						cout << "Removing " << subDir.path().stem().string() << " from " + path.string() + ".\n";
 						filesystem::remove(subDir);
