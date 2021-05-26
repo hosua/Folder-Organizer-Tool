@@ -7,7 +7,7 @@
 #include <filesystem>
 #include <fstream>
 #include <vector>
-#include <direct.h>	// For chdir // This does not work on linux.
+#include <direct.h>	// For chdir // This does not work on linux/mac.
 #include <map>	// Python Dictionary equivalent (except this is ordered)
 #include <algorithm>
 using std::filesystem::directory_iterator;
@@ -121,8 +121,8 @@ void alphabetizeFolder(filesystem::path rootDir) {	// Organizes all files in a d
 	int numLetters;
 	cout << "How many letters do you wish to have per directory?\n";	// This causes an infinite loop when trying to handle invalid inputs. IDK why...
 	cin >> numLetters;
-	bool badInput = true;
-	cout << "Are you sure you wish to do this? (y/n)";
+
+	cout << "Are you sure you wish to do this? (y/n)\n";
 	cin >> userOpt;
 	if (userOpt != "y") {
 		cout << "User entered 'n' or input was invalid.\nExiting...";
@@ -152,7 +152,6 @@ void alphabetizeFolder(filesystem::path rootDir) {	// Organizes all files in a d
 	
 	for (auto alphaPath : alphaPathList) {	// This took me like 4 fucking hours to figure out wtf
 		string alphaName = alphaPath.stem().string();
-		cout << "alphaname:" << alphaName << "\n";
 		for (auto file : filesystem::directory_iterator(rootDir)) {
 			if (!filesystem::is_directory(file)) {
 				bool foundLetter = false;	
@@ -164,7 +163,7 @@ void alphabetizeFolder(filesystem::path rootDir) {	// Organizes all files in a d
 					cout <<"First letter of " + fileName + ", " + firstLetter + " was found in " << alphaName << "\n";
 					cout << "copying " << fileName << " to " << alphaName << "\n";
 					filesystem::copy(file, alphaPath); // Copy that to alphaPath
-					cout << "removing " << fileName << " from " << alphaName << "\n";
+					cout << "removing " << fileName << " from " << rootDir.string() << "\n";
 					filesystem::remove(file); // Remove it after
 				}
 				else {
@@ -179,7 +178,6 @@ void alphabetizeFolder(filesystem::path rootDir) {	// Organizes all files in a d
 	filesystem::create_directory("#");	// Make Unicode folder
 	cout << "Created folder named '#'.\n";
 	path hashPath = rootDir / "#";
-	cout << hashPath.string();
 	// Now that all alphabet letters are organized, we need to move the remaining to the '#' folder.
 	for (auto file : directory_iterator(rootDir)) {\
 		if (!is_directory(file)) {	// if a file
@@ -209,7 +207,7 @@ void unalphabetizeFolder(path path) {	// Moves all files/directories from the su
 					for (const auto & subDir : directory_iterator(dir)) {	// For each file in the subdirectory
 						cout << "Copying " << subDir.path() << " to " << path << "\n";
 						filesystem::copy(subDir, path);
-						cout << "Removing " << subDir.path() << " from " + path.string() + ".\n";
+						cout << "Removing " << subDir.path().stem().string() << " from " + path.string() + ".\n";
 						filesystem::remove(subDir);
 					}
 				for (const auto & dir : directory_iterator(path)) {	// Remove any remaining directories that are empty

@@ -1,6 +1,6 @@
 ﻿  Folder Organizer Tool.cpp
 c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(135): warning C4018: '>': signed/unsigned mismatch
-c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(252): warning C4018: '<': signed/unsigned mismatch
-c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(265): warning C4018: '<': signed/unsigned mismatch
-c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(284): warning C4018: '<': signed/unsigned mismatch
+c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(250): warning C4018: '<': signed/unsigned mismatch
+c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(263): warning C4018: '<': signed/unsigned mismatch
+c:\users\josh\source\repos\folder organizer tool\folder organizer tool\folder organizer tool.cpp(282): warning C4018: '<': signed/unsigned mismatch
   Folder Organizer Tool.vcxproj -> C:\Users\Josh\source\repos\Folder Organizer Tool\Debug\Folder Organizer Tool.exe
