@@ -3,9 +3,11 @@ This tool is useful for managing folders with lots of files. I mainly made it to
 
 CHANGELOG:
 
-5/24/2021 - First revision released
+5/24/2021 - First revision released v0.4-alpha
 
-5/25/2021 - Added Extract duplicate ROM function
+5/25/2021 - Added Extract duplicate ROM function v0.5-alpha
+
+5/26/2021 - Alphabetize letters now lets you pick how many letters you want to use per folder v0.6-alpha
 
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
@@ -15,6 +17,7 @@ Some issues that I am aware of (If you find more, please let me know):
 1) There is no way to change the directory while the program is running, simply restart the program to do this.
 2) If you modify the folders externally while running the program, it will potentially mess things up.
 3) The source code is incompatible with Linux (and I assume also Mac)
+4) Certain unicode characters are currently not supported. This is being worked on at the moment.
 
 
 How to use:
@@ -29,7 +32,7 @@ The easiest way to get this path is navigate to the folder via file explorer, th
 
 Once you enter a valid folder path, you will be given the following options.
 
-![2](https://user-images.githubusercontent.com/22788738/119487552-89e82a00-bd27-11eb-87a9-1dd84a19f451.png)
+![2](https://user-images.githubusercontent.com/22788738/119545166-81601580-bd60-11eb-91bb-7f960d32ce23.png)
 
 1) Remove all except
 
@@ -63,23 +66,25 @@ And assuming everything went well, the files you didn't want should be deleted.
 
 3) Alphabetize Folders
 
-First, I would like to note that you probably will only find this feature useful if you have a seriously huge amount of ROMs.
-What this will do is make folders from #, and A-Z. Then, it will sort all the files into their respective folders.
+Alphabetize folders lets you sort all your files alphabetically.
+First, it will ask you how many letters you want per folder. I will use 3 as an example.
 
-![8](https://user-images.githubusercontent.com/22788738/119490254-a174e200-bd2a-11eb-9de9-e2d034a5ac1c.png)
 
-Once again, just type y to confirm, if nothing went wrong, you will see something like this.
+![8](https://user-images.githubusercontent.com/22788738/119653276-2298ab80-bdf5-11eb-802c-a5d0cf294c17.png)
 
-![9](https://user-images.githubusercontent.com/22788738/119490359-bf424700-bd2a-11eb-898e-fe207cbf14bf.png)
+Once again, just type y to confirm, if nothing went wrong, you will see something like this when it's finished.
+
+![9](https://user-images.githubusercontent.com/22788738/119655239-5d034800-bdf7-11eb-8813-ee65bacc0334.png)
 
 After the process is complete, your directory should look something like this.
 NOTE: If any folders are empty after this process, they will automatically be deleted.
 
-![10](https://user-images.githubusercontent.com/22788738/119490501-e862d780-bd2a-11eb-98b5-ac7e6f99916b.png)
+![10](https://user-images.githubusercontent.com/22788738/119654243-3abcfa80-bdf6-11eb-9306-045ab1f2ec5a.png)
 
 4) Unalphabetize Folders
 
-This should be self explanatory, this essentially undoes what Alphabetize Folders does.
+This should be self explanatory, this essentially undoes what Alphabetize Folders does. 
+However please note that this also affects other folders in the directory as well.
 Once again, you will be prompted with the same message.
 
 ![11](https://user-images.githubusercontent.com/22788738/119490733-2a8c1900-bd2b-11eb-9332-9464c7ee8bfc.png)
@@ -108,7 +113,7 @@ Once again, when you select this option, you will be prompted to type y to confi
 
 ![15](https://user-images.githubusercontent.com/22788738/119540937-01d04780-bd5c-11eb-8b44-4f118df13dc3.png)
 
-Assuming everything went well, your duplicate ROMs should now be in there own folder!
+Assuming everything went well, your duplicate ROMs should now be in their folder!
 
 ![16](https://user-images.githubusercontent.com/22788738/119541818-d7cb5500-bd5c-11eb-8161-c4215abfadc7.png)
 
