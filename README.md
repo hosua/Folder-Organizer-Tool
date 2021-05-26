@@ -9,6 +9,8 @@ CHANGELOG:
 
 5/26/2021 - Alphabetize letters now lets you pick how many letters you want to use per folder v0.6-alpha
 
+5/26/2021 - Fixed incorrect text output and cleaned it a little. Functionally nothing is different from the last version. v0.6.1-alpha
+
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
 
@@ -17,7 +19,7 @@ Some issues that I am aware of (If you find more, please let me know):
 1) There is no way to change the directory while the program is running, simply restart the program to do this.
 2) If you modify the folders externally while running the program, it will potentially mess things up.
 3) The source code is incompatible with Linux (and I assume also Mac)
-4) Certain unicode characters are currently not supported. This is being worked on at the moment.
+4) Certain unicode characters (UTF-16+) are not supported. 
 
 
 How to use:
@@ -74,7 +76,7 @@ First, it will ask you how many letters you want per folder. I will use 3 as an 
 
 Once again, just type y to confirm, if nothing went wrong, you will see something like this when it's finished.
 
-![9](https://user-images.githubusercontent.com/22788738/119655239-5d034800-bdf7-11eb-8813-ee65bacc0334.png)
+![9](https://user-images.githubusercontent.com/22788738/119677940-22a4a580-be0d-11eb-9d46-0172ee00da61.png)
 
 After the process is complete, your directory should look something like this.
 NOTE: If any folders are empty after this process, they will automatically be deleted.
