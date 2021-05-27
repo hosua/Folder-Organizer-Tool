@@ -13,15 +13,18 @@ CHANGELOG:
 
 5/27/2021 - Moving files around is now MUCH faster than before. - v0.7-alpha
 
+5/27/2021 - User now has the option to either move or remove files.  
+Unalphabetize folders renamed to extract folders as it is a better description for what it does.-v0.7.1-alpha
+
 DISCLAIMER: 
-There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
+There are likely bugs present in this program. It worked for me, but it has only been tested a few times so please back up your files before using this tool!
 
 
 ISSUES:
 1) There is no way to change the directory while the program is running, simply restart the program to do this.
 2) If you modify the folders externally while running the program, it will potentially mess things up.
 3) The source code is incompatible with Linux (and I assume also Mac)
-4) Certain unicode characters (UTF-16+) are not supported. 
+4) Certain unicode characters (UTF-16+) are not supported. If you run into a file with a character that cant be read, try to narrow down which file it is and rename it.
 
 
 How to use:
@@ -38,41 +41,55 @@ Once you enter a valid folder path, you will be given the following options.
 
 ![2](https://user-images.githubusercontent.com/22788738/119545166-81601580-bd60-11eb-91bb-7f960d32ce23.png)
 
-1) Remove all except
+1) Move/Remove all except
 
-This will take text entered by the user. The program will go through the entire folder, and delete anything that does not contain this text.
-Let's say I have a huge folder containing ROMs from many regions but only wanted to keep one.
-In this case, the US ROMs in this folder are labelled as "(U)", therefore that is what I will type because I want to keep all of the US ROMs in the folder.
+This will take text entered by the user. 
 
-![3](https://user-images.githubusercontent.com/22788738/119488615-c5372880-bd28-11eb-8845-44ed17fc8960.png)
+The program will go through the entire folder, and either move or delete anything that does not contain this text.
 
-It will prompt you again to make sure you want to do this, just type y to confirm.
+Let's say I have a folder containing ROMs from many regions but only wanted to keep one.
 
-![4](https://user-images.githubusercontent.com/22788738/119488950-1e06c100-bd29-11eb-9f05-a9a81f71af32.png)
+In this case, the US ROMs in this folder are labelled as "(USA)", therefore that is what I will type because I want to keep all of the US ROMs in the folder.
 
-It will now show you something like this, and all of the files you didn't want should be gone.
+![3](https://user-images.githubusercontent.com/22788738/119889454-8eb60500-bf04-11eb-9cdd-e4ce1096556d.png)
 
-![5](https://user-images.githubusercontent.com/22788738/119489045-3e368000-bd29-11eb-8865-5b369938390a.png)
+Next it will ask if you wish to move or remove the files. Just type in move or remove to select an option. 
 
-2) Remove all files containing
+It will then prompt you again to make sure you want to do this, just type y to confirm.
+
+It will now show you something like this.
+
+![4](https://user-images.githubusercontent.com/22788738/119889665-df2d6280-bf04-11eb-8efb-c626cf476a07.png)
+
+All of the files you didn't want should now begone or in a folder labelled "Separated Files" depending on what you chose to do.
+
+![5](https://user-images.githubusercontent.com/22788738/119889834-1439b500-bf05-11eb-9f00-4370ed241fba.png)
+
+2) Move/Remove all files containing
 
 This is essentially the opposite of the previous function.
-Let's say I wanted to only remove files containing Japanese ROMs in the same folder.
-Similar to last time, I would type in (J) to do this. This time it will remove everything containing (J) that's in the folder.
 
-![6](https://user-images.githubusercontent.com/22788738/119489610-d9c7f080-bd29-11eb-862f-fd7500f27f04.png)
+Let's say I wanted to only move/remove files containing Japanese ROMs in the same folder.
 
-Once again it will show you the files being deleted.
+Similar to last time, I would type in (Japan) to do this. This time it will move/remove everything containing (Japan) that's in the folder.
 
-![7](https://user-images.githubusercontent.com/22788738/119489771-0aa82580-bd2a-11eb-8012-5e999e6dbc29.png)
+Enter move or remove like last time, then type y to confirm the process.
 
-And assuming everything went well, the files you didn't want should be deleted.
+![6](https://user-images.githubusercontent.com/22788738/119890202-8ad6b280-bf05-11eb-89d3-e9e14ccefbd2.png)
+
+Once again it will show you the files being moved/deleted.
+
+![7](https://user-images.githubusercontent.com/22788738/119890422-d0937b00-bf05-11eb-870d-3ff6c9986341.png)
+
+And assuming everything went well, the files you didn't want should now be moved/deleted.
+
+![7_5](https://user-images.githubusercontent.com/22788738/119890523-ef920d00-bf05-11eb-935e-1465519741e5.png)
 
 3) Alphabetize Folders
 
 Alphabetize folders lets you sort all your files alphabetically.
-First, it will ask you how many letters you want per folder. I will use 3 as an example.
 
+First, it will ask you how many letters you want per folder. I will use 3 as an example.
 
 ![8](https://user-images.githubusercontent.com/22788738/119653276-2298ab80-bdf5-11eb-802c-a5d0cf294c17.png)
 
@@ -81,6 +98,7 @@ Once again, just type y to confirm, if nothing went wrong, you will see somethin
 ![9](https://user-images.githubusercontent.com/22788738/119677940-22a4a580-be0d-11eb-9d46-0172ee00da61.png)
 
 After the process is complete, your directory should look something like this.
+
 NOTE: If any folders are empty after this process, they will automatically be deleted.
 
 ![10](https://user-images.githubusercontent.com/22788738/119654243-3abcfa80-bdf6-11eb-9306-045ab1f2ec5a.png)
@@ -88,7 +106,9 @@ NOTE: If any folders are empty after this process, they will automatically be de
 4) Unalphabetize Folders
 
 This should be self explanatory, this essentially undoes what Alphabetize Folders does. 
+
 However please note that this also affects other folders in the directory as well.
+
 Once again, you will be prompted with the same message.
 
 ![11](https://user-images.githubusercontent.com/22788738/119490733-2a8c1900-bd2b-11eb-9332-9464c7ee8bfc.png)
