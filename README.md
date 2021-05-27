@@ -14,7 +14,7 @@ CHANGELOG:
 5/27/2021 - Moving files around is now MUCH faster than before. - v0.7-alpha
 
 5/27/2021 - User now has the option to either move or remove files.  
-Unalphabetize folders renamed to extract folders as it is a better description for what it does.-v0.7.1-alpha
+Unalphabetize folders renamed to extract folders as it is a better description for what it does. - v0.7.1-alpha
 
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times so please back up your files before using this tool!
