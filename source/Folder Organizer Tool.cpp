@@ -155,10 +155,14 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 			if (!boost::filesystem::is_directory(file)) {
 				bool foundLetter = false;
 				string fileName = file.path().stem().string();
+				string ext = boost::filesystem::extension(file);
+				string fullName = fileName + ext;
+				cout << ext << "\n";
+
 				char firstLetter = toupper(file.path().stem().string()[0]);
 				if (alphaName.find(firstLetter) != string::npos) {	// If we found first Letter in the alpha name
 					foundLetter = true;
-					boost::filesystem::path targetPath = alphaPath / fileName;	// merge name of file and path
+					boost::filesystem::path targetPath = alphaPath / fullName;	// merge name of file and path
 					cout << "Moving " + fileName + " to " + targetPath.string() + "\n";
 					boost::filesystem::rename(file, targetPath);	// move file to target
 				}
@@ -167,6 +171,7 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 				}
 				if (foundLetter)	// This will break out of the loop once we find the first letter to increase efficiency.
 					continue;
+
 			}
 		}
 	}
@@ -176,13 +181,14 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 	path hashPath = rootDir / "#";
 	// Now that all alphabet letters are organized, we need to move the remaining to the '#' folder.
 	for (auto file : directory_iterator(rootDir)) {
-		\
-			if (!is_directory(file)) {	// if a file
-				string fileName = file.path().stem().string();
-				boost::filesystem::path targetPath = hashPath / fileName;	// merge name of file and path
-				cout << "Moving " + fileName + " to " + targetPath.string() + "\n";
-				boost::filesystem::rename(file, targetPath);	// move file to target
-			}
+		if (!is_directory(file)) {	// if a file
+			string fileName = file.path().stem().string();
+			string ext = boost::filesystem::extension(file);
+			string fullName = fileName + ext;
+			boost::filesystem::path targetPath = hashPath / fullName;	// merge name of file and path
+			cout << "Moving " + fileName + " to " + targetPath.string() + "\n";
+			boost::filesystem::rename(file, targetPath);	// move file to target
+		}
 	}
 	for (const auto & dir : directory_iterator(rootDir)) {	// Remove any remaining directories that are empty
 		if (boost::filesystem::is_empty(dir)) {
@@ -190,6 +196,8 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 			boost::filesystem::remove(dir);
 		}
 	}
+
+
 	std::cout << "\n\nAll done!\n\n";
 }
 void unalphabetizeFolder(path path) {	// Moves all files/directories from the subdirectory in the directory
@@ -202,7 +210,9 @@ void unalphabetizeFolder(path path) {	// Moves all files/directories from the su
 				if (boost::filesystem::is_directory(path))
 					for (const auto & subDirFile : directory_iterator(dir)) {	// For each file in the subdirectory
 						string fileName = subDirFile.path().stem().string();
-						boost::filesystem::path targetPath = path / fileName;	// merge name of file and path
+						string ext = boost::filesystem::extension(subDirFile);
+						string fullName = fileName + ext;
+						boost::filesystem::path targetPath = path / fullName;	// merge name of file and path
 						cout << "Moving " + fileName + " to " + path.string() + "\n";
 						boost::filesystem::rename(subDirFile, targetPath);	// move file to target
 					}
@@ -274,7 +284,9 @@ void extractDuplicateTitles(path dirPath) {
 			}
 			for (int i = 0; i < pathList.size(); i++) {	// Now moving the dupes to the Duplicates folder
 				string fileName = pathList[i].stem().string();
-				boost::filesystem::path targetPath = dupeDir / fileName;	// merge name of file and path
+				string ext = boost::filesystem::extension(pathList[i]);
+				string fullName = fileName + ext;
+				boost::filesystem::path targetPath = dupeDir / fullName;	// merge name of file and path
 				cout << "Moving " + fileName + " to " + dupeDir.string() + "\n";
 				boost::filesystem::rename(pathList[i], targetPath);	// move file to target
 			}
