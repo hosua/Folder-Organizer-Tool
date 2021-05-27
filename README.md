@@ -61,7 +61,7 @@ It will now show you something like this.
 
 ![4](https://user-images.githubusercontent.com/22788738/119889665-df2d6280-bf04-11eb-8efb-c626cf476a07.png)
 
-All of the files you didn't want should now begone or in a folder labelled "Separated Files" depending on what you chose to do.
+All of the files you didn't want should now be gone or in a folder labelled "Separated Files" depending on what you chose to do.
 
 ![5](https://user-images.githubusercontent.com/22788738/119889834-1439b500-bf05-11eb-9f00-4370ed241fba.png)
 
