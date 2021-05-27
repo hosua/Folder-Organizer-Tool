@@ -11,6 +11,8 @@ CHANGELOG:
 
 5/26/2021 - Output was displaying the wrong directories, this is now fixed. v0.6 removed because nothing else was changed. - v0.6.1-alpha
 
+5/27/2021 - Moving files around is now MUCH faster than before. - v0.7-alpha
+
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
 
