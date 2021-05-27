@@ -17,7 +17,7 @@ DISCLAIMER:
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
 
 
-Some issues that I am aware of (If you find more, please let me know):
+ISSUES:
 1) There is no way to change the directory while the program is running, simply restart the program to do this.
 2) If you modify the folders externally while running the program, it will potentially mess things up.
 3) The source code is incompatible with Linux (and I assume also Mac)
