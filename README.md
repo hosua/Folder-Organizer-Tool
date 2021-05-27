@@ -14,14 +14,14 @@ CHANGELOG:
 5/27/2021 - Moving files around is now MUCH faster than before. - v0.7-alpha
 
 DISCLAIMER: 
-There are likely bugs present in this program. It worked for me, but it has only been tested a few times, so please back up your files before using this tool!
+There are likely bugs present in this program. It worked for me, but it has only been tested a few times so please back up your files before using this tool!
 
 
 ISSUES:
 1) There is no way to change the directory while the program is running, simply restart the program to do this.
 2) If you modify the folders externally while running the program, it will potentially mess things up.
 3) The source code is incompatible with Linux (and I assume also Mac)
-4) Certain unicode characters (UTF-16+) are not supported. 
+4) Certain unicode characters (UTF-16+) are not supported. If you run into a file with a character that cant be read, try to narrow down which file it is and rename it.
 
 
 How to use:
@@ -40,8 +40,12 @@ Once you enter a valid folder path, you will be given the following options.
 
 1) Remove all except
 
-This will take text entered by the user. The program will go through the entire folder, and delete anything that does not contain this text.
+This will take text entered by the user. 
+
+The program will go through the entire folder, and delete anything that does not contain this text.
+
 Let's say I have a huge folder containing ROMs from many regions but only wanted to keep one.
+
 In this case, the US ROMs in this folder are labelled as "(U)", therefore that is what I will type because I want to keep all of the US ROMs in the folder.
 
 ![3](https://user-images.githubusercontent.com/22788738/119488615-c5372880-bd28-11eb-8845-44ed17fc8960.png)
@@ -71,6 +75,7 @@ And assuming everything went well, the files you didn't want should be deleted.
 3) Alphabetize Folders
 
 Alphabetize folders lets you sort all your files alphabetically.
+
 First, it will ask you how many letters you want per folder. I will use 3 as an example.
 
 
@@ -81,6 +86,7 @@ Once again, just type y to confirm, if nothing went wrong, you will see somethin
 ![9](https://user-images.githubusercontent.com/22788738/119677940-22a4a580-be0d-11eb-9d46-0172ee00da61.png)
 
 After the process is complete, your directory should look something like this.
+
 NOTE: If any folders are empty after this process, they will automatically be deleted.
 
 ![10](https://user-images.githubusercontent.com/22788738/119654243-3abcfa80-bdf6-11eb-9306-045ab1f2ec5a.png)
@@ -88,7 +94,9 @@ NOTE: If any folders are empty after this process, they will automatically be de
 4) Unalphabetize Folders
 
 This should be self explanatory, this essentially undoes what Alphabetize Folders does. 
+
 However please note that this also affects other folders in the directory as well.
+
 Once again, you will be prompted with the same message.
 
 ![11](https://user-images.githubusercontent.com/22788738/119490733-2a8c1900-bd2b-11eb-9332-9464c7ee8bfc.png)
