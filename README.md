@@ -41,7 +41,7 @@ Once you enter a valid folder path, you will be given the following options.
 
 ![2](https://user-images.githubusercontent.com/22788738/119891677-451ae980-bf07-11eb-9670-3f4b4a12b26d.png)
 
-1) Move/Remove all except
+1) Move/Remove all files except
 
 This will take text entered by the user. 
 
