@@ -24,7 +24,7 @@ ISSUES:
 1) There is no way to change the directory while the program is running, simply restart the program to do this.
 2) If you modify the folders externally while running the program, it will potentially mess things up.
 3) The source code is incompatible with Linux (and I assume also Mac)
-4) Certain unicode characters (UTF-16+) are not supported. If you run into a file with a character that cant be read, try to narrow down which file it is and rename it.
+4) Certain unicode characters (UTF-16+) are not supported. If you run into a file with a character that can't be read, try to narrow down which file it is and rename it.
 
 
 How to use:
