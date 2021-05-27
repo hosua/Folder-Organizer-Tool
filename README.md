@@ -103,9 +103,11 @@ NOTE: If any folders are empty after this process, they will automatically be de
 
 ![10](https://user-images.githubusercontent.com/22788738/119654243-3abcfa80-bdf6-11eb-9306-045ab1f2ec5a.png)
 
-4) Unalphabetize Folders
+4) Extract all folders in directory
 
-This should be self explanatory, this essentially undoes what Alphabetize Folders does. 
+If you wish to undo any of the previous functions, this will do just that.
+
+However please keep in mind that this extracts ALL folders in the current directory. Not just the ones that were created by the program.
 
 However please note that this also affects other folders in the directory as well.
 
