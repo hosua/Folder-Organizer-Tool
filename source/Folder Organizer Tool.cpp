@@ -63,55 +63,100 @@ void showPath(vector<boost::filesystem::path> dirList, bool nameOnly = false) {
 	if (dirList.size() == 0)
 		std::cout << "Directory is empty!";
 }
-void removeAllExcept(vector<boost::filesystem::path> dirList) {
+void removeAllExcept(vector<boost::filesystem::path> dirList, boost::filesystem::path rootDir) {
 	string keepStr;
-	std::cout << "\nThis tool will remove all files in the folder that DON'T contain the entered text. \n";
-	std::cout << "For example, if I enter (U), any file in the folder that doesn't have (U) in the file name will be deleted.\n\n";
+	std::cout << "\nThis tool will move/remove all files in the folder that DON'T contain the entered text. \n";
+	std::cout << "For example, if I enter (U), any file in the folder that doesn't have (U) in the file name will be moved/deleted.\n\n";
 	std::cout << "\nEnter the text you wish to ignore (This is case sensitive!)\n";
 	std::cin >> keepStr;
-	string user_opt;
+	string removeFiles;
+	std::cout << "\nDo you wish to move or remove the files? (Type move or remove)\n";
+	std::cin >> removeFiles;
+	string confirmation;
 	std::cout << "WARNING: This is an irreversible process! Are you sure? (y/n)\n";
-	std::cin >> user_opt;
+	std::cin >> confirmation;
 	std::cout << "\n";
-	if (user_opt == "y") {
-		for (const auto & file : dirList) {
-			string fileDirStr = file.string();
-			string fileNameStr = file.stem().string();
-			if (fileNameStr.find(keepStr) == string::npos) {	// This is how you check if the string contains the substring.
-				// I don't really fully understand the logic here, look at this later.
-				remove(file);
-				std::cout << "Removed '" + fileNameStr + "' from \n'" + file.parent_path().string() + "'\n";
-			}
-		}	// Ignore the rest
-	}
-	else {
-		std::cout << "\n\nUser entered 'n' or input was invalid. Cancelling the task.\n";
-		exit(EXIT_FAILURE);
-	}
-	std::cout << "\n\nAll done!\n\n";
-}
-void removeAllContaining(vector<boost::filesystem::path> dirList) {
-	string keepStr;
-	std::cout << "\nThis tool will remove all files in the folder that DO contain the entered text. \n";
-	std::cout << "For example, if I enter (J), all files with (J) in the file name will be deleted.\n\n";
-	std::cout << "\nEnter the text you wish to delete all of (This is case sensitive!)\n";
-	cin >> keepStr;
-	string user_opt;
-	std::cout << "WARNING: This is an irreversible process! Are you sure? (y/n)\n";
-	std::cin >> user_opt;
-	std::cout << "\n";
-	if (user_opt == "y") {
-		for (const auto & file : dirList) {
-			string fileDirStr = file.string();
-			string fileNameStr = file.stem().string();
-			if (fileNameStr.find(keepStr) != string::npos) {	// if substring not in string
-				remove(file);
-				std::cout << "Removed '" + fileNameStr + "' from \n'" + file.parent_path().string() + "'\n";
-			}
+	if (confirmation == "y") {
+		if (removeFiles == "remove") {
+			for (const auto & file : dirList) {
+				string fileDirStr = file.string();
+				string fileNameStr = file.stem().string();
+				if (fileNameStr.find(keepStr) == string::npos) {	// This is how you check if the string contains the substring.
+					boost::filesystem::remove(file);
+					std::cout << "Removed '" + fileNameStr + "' from '" + file.parent_path().string() + "'\n";
+				}
+			}	// Ignore the rest
+		}
+		if (removeFiles == "move") {
+			cout << "Created directory 'Separated Files' in '" + rootDir.string() + "'\n";
+			string sepFiles = "Separated Files";
+			boost::filesystem::create_directory(sepFiles);
+			for (const auto & file : dirList) {
+				string fileDirStr = file.string();
+				string fileNameStr = file.stem().string();
+				string ext = boost::filesystem::extension(file);
+				string fullName = fileNameStr + ext;
+				boost::filesystem::path newPath = rootDir / sepFiles / fullName;
+				if (fileNameStr.find(keepStr) == string::npos) {
+					cout << "Moving '" + fileNameStr + "' to '" + newPath.string() + "'\n";
+					boost::filesystem::rename(file, newPath);	// move file to target
+				}
+			}	// Ignore the rest
+		}
+		else {
+			std::cout << "\n\nUser did not specify move or remove... cancelling the task.\n";
 		}
 	}
 	else {
-		std::cout << "User entered 'n' or input was invalid.\n Exiting the program...";;
+		std::cout << "\n\nUser entered 'n' or input was invalid. Cancelling the task.\n";
+	}
+	std::cout << "\n\nAll done!\n\n";
+}
+void removeAllContaining(vector<boost::filesystem::path> dirList, boost::filesystem::path rootDir) {
+	string removeStr;
+	std::cout << "\nThis tool will move/remove all files in the folder that DO contain the entered text. \n";
+	std::cout << "For example, if I enter (J), all files with (J) in the file name will be moved/deleted.\n\n";
+	std::cout << "\nEnter the text you wish to move/delete all of (This is case sensitive!)\n";
+	cin >> removeStr;
+	string removeFiles;
+	std::cout << "\nDo you wish to move or remove the files? (Type move or remove)\n";
+	std::cin >> removeFiles;
+	string confirmation;
+	std::cout << "WARNING: This is an irreversible process! Are you sure? (y/n)\n";
+	std::cin >> confirmation;
+	std::cout << "\n";
+	if (confirmation == "y") {
+		if (removeFiles == "remove"){
+			for (const auto & file : dirList) {
+				string fileDirStr = file.string();
+				string fileNameStr = file.stem().string();
+				if (fileNameStr.find(removeStr) != string::npos) {	// if substring not in string
+					remove(file);
+					std::cout << "Removed '" + fileNameStr + "' from \n'" + file.parent_path().string() + "'\n";
+				}
+			}
+		}
+		if (removeFiles == "move") {
+			boost::filesystem::create_directory(removeStr);
+			cout << "Created directory '" + removeStr + "' in '" + rootDir.string() + "'\n";
+			for (const auto & file : dirList) {
+				string fileDirStr = file.string();
+				string fileNameStr = file.stem().string();
+				string ext = boost::filesystem::extension(file);
+				string fullName = fileNameStr + ext;
+				boost::filesystem::path newPath = rootDir / removeStr / fullName;
+				if (fileNameStr.find(removeStr) != string::npos) {	// if removeStr not found in file name
+					cout << "Moving '" + fileNameStr + "' to '" + newPath.string() + "'\n";
+					boost::filesystem::rename(file, newPath);	// move file to target
+				}
+			}
+		}
+		else {
+			std::cout << "\n\nUser did not specify move or remove... cancelling the task.\n";
+		}
+	}
+	else {
+		std::cout << "User entered 'n' or input was invalid.\n Cancelling task....";;
 	}
 	std::cout << "\n\nAll done!\n\n";
 }
@@ -157,8 +202,6 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 				string fileName = file.path().stem().string();
 				string ext = boost::filesystem::extension(file);
 				string fullName = fileName + ext;
-				cout << ext << "\n";
-
 				char firstLetter = toupper(file.path().stem().string()[0]);
 				if (alphaName.find(firstLetter) != string::npos) {	// If we found first Letter in the alpha name
 					foundLetter = true;
@@ -200,7 +243,7 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 
 	std::cout << "\n\nAll done!\n\n";
 }
-void unalphabetizeFolder(path path) {	// Moves all files/directories from the subdirectory in the directory
+void extractDir(path path) {	// Moves all files/directories from the subdirectory in the directory
 	string user_opt;
 	cout << "Are you sure you wish to do this? (y/n)";
 	cin >> user_opt;
@@ -232,7 +275,6 @@ void unalphabetizeFolder(path path) {	// Moves all files/directories from the su
 	}
 	cout << "\n\nAll done!\n\n";
 }
-
 void extractDuplicateTitles(path dirPath) {
 	map<path, string> dirMap;
 	path pathObj(dirPath);
@@ -304,7 +346,7 @@ void extractDuplicateTitles(path dirPath) {
 
 int main()
 {
-	cout << "Folder Organizer Tool v0.7 \n\n";
+	cout << "Folder Organizer Tool v0.7.1 \n\n";
 	cout << "  __  __           _        _             _   _                               \n";
 	cout << " |  \\/  | __ _  __| | ___  | |__  _   _  | | | | ___  _____      _____   ___  \n";
 	cout << " | |\\/| |/ _` |/ _` |/ _ \\ | '_ \\| | | | | |_| |/ _ \\/ __\\ \\ /\\ / / _ \\ / _ \\ \n";
@@ -327,10 +369,10 @@ int main()
 	while (!quit) {
 		int user_opt;
 		cout << "\n\nWhat would you like to do?\n";
-		cout << "1) Remove all except\n";
-		cout << "2) Remove all files containing\n";
+		cout << "1) Move/Remove all files except\n";
+		cout << "2) Move/Remove all files containing\n";
 		cout << "3) Alphabetize folders\n";
-		cout << "4) Unalphabetize folders\n";
+		cout << "4) Extract all folders in directory\n";
 		cout << "5) Show directory\n";
 		cout << "6) Extract Duplicate ROMs\n";
 		cout << "7) Exit\n";
@@ -338,16 +380,16 @@ int main()
 
 		switch (user_opt) {
 		case 1:
-			removeAllExcept(dirList);
+			removeAllExcept(dirList, dir);
 			break;
 		case 2:
-			removeAllContaining(dirList);
+			removeAllContaining(dirList, dir);
 			break;
 		case 3:
 			alphabetizeFolder(dir);
 			break;
 		case 4:
-			unalphabetizeFolder(dir);
+			extractDir(dir);
 			break;
 		case 5:
 			showPath(dirList);
