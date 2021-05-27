@@ -39,7 +39,7 @@ The easiest way to get this path is navigate to the folder via file explorer, th
 
 Once you enter a valid folder path, you will be given the following options.
 
-![2](https://user-images.githubusercontent.com/22788738/119545166-81601580-bd60-11eb-91bb-7f960d32ce23.png)
+![2](https://user-images.githubusercontent.com/22788738/119891677-451ae980-bf07-11eb-9670-3f4b4a12b26d.png)
 
 1) Move/Remove all except
 
