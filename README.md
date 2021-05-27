@@ -109,7 +109,7 @@ If you wish to undo any of the previous functions, this will do just that.
 
 However please keep in mind that this extracts ALL folders in the current directory. Not just the ones that were created by the program.
 
-However please note that this also affects other folders in the directory as well.
+NOTE: This also affects other folders in the directory as well!
 
 Once again, you will be prompted with the same message.
 
