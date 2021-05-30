@@ -1,6 +1,17 @@
 # Folder Organizer Tool - Made by Hoswoo/Hosua
 This windows-based tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection.
 
+# Table of contents
+
+- [Folder Organizer Tool - Made by Hoswoo/Hosua](#folder-organizer-tool---made-by-hoswoohosua)
+- [How to use](#how-to-use)
+- [1) Move/Remove all files except](#1-moveremove-all-files-except)
+- [2) Move/Remove all files containing](#2-moveremove-all-files-containing)
+- [3) Alphabetize Folders](#3-alphabetize-folders)
+- [4) Extract all folders in directory](#4-extract-all-folders-in-directory)
+- [5) Show directory](#5-show-directory)
+- [6) Extract Duplicate ROMs](#6-extract-duplicate-roms)
+
 ### CHANGELOG:
 
 5/24/2021 - First revision released. - v0.4-alpha
