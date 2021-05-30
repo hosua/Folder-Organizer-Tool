@@ -16,6 +16,8 @@ CHANGELOG:
 5/27/2021 - User now has the option to either move or remove files for the first 2 options.  
 Unalphabetize folders renamed to extract folders as it is a better description for what it does. - v0.7.1-alpha
 
+5/30/2021 - Fixed show directory to now refresh every time changes are made. Fixed a few text outputs that were not behaving correctly. - v0.7.2-alpha
+
 DISCLAIMER: 
 There are likely bugs present in this program. It worked for me, but it has only been tested a few times so please back up your files before using this tool!
 
