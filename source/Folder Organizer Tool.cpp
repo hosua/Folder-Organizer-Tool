@@ -49,18 +49,18 @@ vector<path> getDirList(const path path, bool ignoreDir = true) {	// Create a ve
 // & tells c++ to reference the address of "file". This essentially makes the data mutable. 
 //	On the contrary, returning without referencing the address will return a copy instead of the original, making it immutable.
 // * tells c++ to reference the pointer of "file". You can do arithmetic operations with pointers.
-void showPath(vector<boost::filesystem::path> dirList, bool nameOnly = false) {
+void showPath(boost::filesystem::path dirPath, bool nameOnly = false) {
 	if (!nameOnly) {	// Get file directories
-		for (const auto & file : dirList) {
+		for (const auto & file : directory_iterator(dirPath)) {
 			std::cout << file << "\n";
 		}
 	}
 	else {	// Get only file name
-		for (const auto & file : dirList) {
+		for (const auto & file : dirPath) {
 			std::cout << file.stem().string() << endl;
 		}
 	}
-	if (dirList.size() == 0)
+	if (dirPath.size() == 0)
 		std::cout << "Directory is empty!";
 }
 void removeAllExcept(vector<boost::filesystem::path> dirList, boost::filesystem::path rootDir) {
@@ -73,7 +73,7 @@ void removeAllExcept(vector<boost::filesystem::path> dirList, boost::filesystem:
 	std::cout << "\nDo you wish to move or remove the files? (Type move or remove)\n";
 	std::cin >> removeFiles;
 	string confirmation;
-	std::cout << "WARNING: This is an irreversible process! Are you sure? (y/n)\n";
+	std::cout << "WARNING: This is an irreversible process if you remove, are you sure? (y/n)\n";
 	std::cin >> confirmation;
 	std::cout << "\n";
 	if (confirmation == "y") {
@@ -87,7 +87,7 @@ void removeAllExcept(vector<boost::filesystem::path> dirList, boost::filesystem:
 				}
 			}	// Ignore the rest
 		}
-		if (removeFiles == "move") {
+		else if (removeFiles == "move") {
 			cout << "Created directory 'Separated Files' in '" + rootDir.string() + "'\n";
 			string sepFiles = "Separated Files";
 			boost::filesystem::create_directory(sepFiles);
@@ -122,11 +122,11 @@ void removeAllContaining(vector<boost::filesystem::path> dirList, boost::filesys
 	std::cout << "\nDo you wish to move or remove the files? (Type move or remove)\n";
 	std::cin >> removeFiles;
 	string confirmation;
-	std::cout << "WARNING: This is an irreversible process! Are you sure? (y/n)\n";
+	std::cout << "WARNING: Removing is an irreversible process, are you sure? (y/n)\n";
 	std::cin >> confirmation;
 	std::cout << "\n";
 	if (confirmation == "y") {
-		if (removeFiles == "remove"){
+		if (removeFiles == "remove") {
 			for (const auto & file : dirList) {
 				string fileDirStr = file.string();
 				string fileNameStr = file.stem().string();
@@ -136,7 +136,7 @@ void removeAllContaining(vector<boost::filesystem::path> dirList, boost::filesys
 				}
 			}
 		}
-		if (removeFiles == "move") {
+		else if (removeFiles == "move") {
 			boost::filesystem::create_directory(removeStr);
 			cout << "Created directory '" + removeStr + "' in '" + rootDir.string() + "'\n";
 			for (const auto & file : dirList) {
@@ -214,7 +214,6 @@ void alphabetizeFolder(boost::filesystem::path rootDir) {	// Organizes all files
 				}
 				if (foundLetter)	// This will break out of the loop once we find the first letter to increase efficiency.
 					continue;
-
 			}
 		}
 	}
@@ -346,7 +345,7 @@ void extractDuplicateTitles(path dirPath) {
 
 int main()
 {
-	cout << "Folder Organizer Tool v0.7.1 \n\n";
+	cout << "Folder Organizer Tool v0.7.2 \n\n";
 	cout << "  __  __           _        _             _   _                               \n";
 	cout << " |  \\/  | __ _  __| | ___  | |__  _   _  | | | | ___  _____      _____   ___  \n";
 	cout << " | |\\/| |/ _` |/ _` |/ _ \\ | '_ \\| | | | | |_| |/ _ \\/ __\\ \\ /\\ / / _ \\ / _ \\ \n";
@@ -392,7 +391,7 @@ int main()
 			extractDir(dir);
 			break;
 		case 5:
-			showPath(dirList);
+			showPath(dir);
 			break;
 		case 6:
 			extractDuplicateTitles(dir);
