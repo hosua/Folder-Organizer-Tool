@@ -4,13 +4,14 @@ This windows-based tool is useful for managing folders with lots of files. I mai
 # Table of contents
 
 - [Folder Organizer Tool - Made by Hoswoo/Hosua](#folder-organizer-tool---made-by-hoswoohosua)
-- [How to use](#how-to-use)
-- [1) Move/Remove all files except](#1-moveremove-all-files-except)
-- [2) Move/Remove all files containing](#2-moveremove-all-files-containing)
-- [3) Alphabetize Folders](#3-alphabetize-folders)
-- [4) Extract all folders in directory](#4-extract-all-folders-in-directory)
-- [5) Show directory](#5-show-directory)
-- [6) Extract Duplicate ROMs](#6-extract-duplicate-roms)
+- [Table of contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [1. Move/Remove all files except](#1-moveremove-all-files-except)
+- [2. Move/Remove all files containing](#2-moveremove-all-files-containing)
+- [3. Alphabetize Folders](#3-alphabetize-folders)
+- [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
+- [5. Show directory](#5-show-directory)
+- [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
 
 ### CHANGELOG:
 
@@ -40,7 +41,7 @@ There are likely bugs present in this program. It worked for me, but it has only
 4) Certain unicode characters (UTF-16+) are not supported. If you run into a file with a character that can't be read, try to narrow down which file it is and rename it.
 
 
-# How to use
+# Getting Started
 
 When you first open the program, you will be prompted to enter the directory to the folder you want to modify.
 
@@ -54,7 +55,7 @@ Once you enter a valid folder path, you will be given the following options.
 
 ![2](https://user-images.githubusercontent.com/22788738/119891677-451ae980-bf07-11eb-9670-3f4b4a12b26d.png)
 
-# 1) Move/Remove all files except
+# 1. Move/Remove all files except
 
 This will take text entered by the user. 
 
@@ -78,7 +79,7 @@ All of the files you didn't want should now be gone or in a folder labelled "Sep
 
 ![5](https://user-images.githubusercontent.com/22788738/119889834-1439b500-bf05-11eb-9f00-4370ed241fba.png)
 
-# 2) Move/Remove all files containing
+# 2. Move/Remove all files containing
 
 This is essentially the opposite of the previous function.
 
@@ -98,7 +99,7 @@ And assuming everything went well, the files you didn't want should now be moved
 
 ![7_5](https://user-images.githubusercontent.com/22788738/119890523-ef920d00-bf05-11eb-935e-1465519741e5.png)
 
-# 3) Alphabetize Folders
+# 3. Alphabetize Folders
 
 Alphabetize folders lets you sort all your files alphabetically.
 
@@ -116,7 +117,7 @@ NOTE: If any folders are empty after this process, they will automatically be de
 
 ![10](https://user-images.githubusercontent.com/22788738/119654243-3abcfa80-bdf6-11eb-9306-045ab1f2ec5a.png)
 
-# 4) Extract all folders in directory
+# 4. Extract all folders in directory
 
 If you wish to undo any of the previous functions, this will do just that.
 
@@ -135,14 +136,14 @@ Once it's done, your folders will be unorganized again.
 
 ![13](https://user-images.githubusercontent.com/22788738/119491000-750d9580-bd2b-11eb-8b5f-e25753ff23ab.png)
 
-# 5) Show directory
+# 5. Show directory
 
 I mainly put this here to let the user verify that they are actually in the right folder.
 It will simply show you the directory.
 
 ![14](https://user-images.githubusercontent.com/22788738/119491210-aab27e80-bd2b-11eb-82bc-147c86e2e607.png)
 
-# 6) Extract Duplicate ROMs 
+# 6. Extract Duplicate ROMs 
 
 This function will look through a directory and move duplicate titles to their own directory. 
 Note that this will only work if your ROMs are properly titled. It will also detect multiple disk ROMs as duplicates too, so please bear that in mind.
