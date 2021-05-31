@@ -103,7 +103,9 @@ And assuming everything went well, the files you didn't want should now be moved
 
 Alphabetize folders lets you sort all your files alphabetically.
 
-First, it will ask you how many letters you want per folder. I will use 3 as an example.
+First, it will ask you how many letters you want per folder. I will use 3 as an example. 
+
+This will sort all the files into folders named 'ABC', 'DEF', and so on.
 
 ![8](https://user-images.githubusercontent.com/22788738/119653276-2298ab80-bdf5-11eb-802c-a5d0cf294c17.png)
 
