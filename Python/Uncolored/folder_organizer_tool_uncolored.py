@@ -37,9 +37,10 @@ def extractSubStr(prevDir):
             print(fg_good + "Created directory " + new_dir + fg_reset)
             os.makedirs(subStr)
         for item in os.listdir(dir):
-            if item.lower().__contains__(subStr):
-                shutil.move(item, new_dir)
-                print(fg_good + "Moving " + fg_prompt + item + fg_good + " to " + fg_prompt + new_dir + fg_reset)
+            if os.path.isfile(item):    # make sure were working with a file
+                if item.lower().__contains__(subStr.lower()):
+                    shutil.move(item, new_dir)
+                    print(fg_good + "Moving " + fg_prompt + item + fg_good + " to " + fg_prompt + new_dir + fg_reset)
         print(fg_good + "Process completed with no errors...\n\n" + fg_reset)
         return dir
     else:
@@ -64,6 +65,7 @@ def keepSubStr(prevDir):
             return ""
     
     subStr = input(fg_prompt + "Enter the substring you wish to keep:" + fg_reset + "\n").lower()
+
     confirm = input(fg_prompt + "Are you sure you wish to do this? (y/n) " + fg_reset + "\n").lower()
     if confirm == "y":
         extr = "Extracted"
@@ -72,9 +74,11 @@ def keepSubStr(prevDir):
             print(fg_good + "Created directory " + new_dir + fg_reset)
             os.makedirs(extr)
         for item in os.listdir(dir):
-            if not item.lower().__contains__(subStr):
-                print(fg_good + "Moving " + fg_prompt + item + fg_good + " to " + fg_prompt + new_dir + fg_reset)
-                shutil.move(item, new_dir)
+            if os.path.isfile(item):    # make sure were working with a file
+                print("item", item.lower(), "substr", subStr)
+                if not subStr in item.lower():   
+                    print(fg_good + "Moving " + fg_prompt + item + fg_good + " to " + fg_prompt + new_dir + fg_reset)
+                    shutil.move(item, new_dir)
         print(fg_good + "Process completed with no errors...\n\n" + fg_reset)
         return dir
     else:
@@ -245,16 +249,20 @@ def extractDuplicates(prevDir):
                 name = file.split("(")[0]
                 if name not in nameList:
                     nameList.append(name)
+                    #print("added " + name + " to lst\n")   
                 else:
                     if name not in dupeList:    # only get one instance of each dupe
                         dupeList.append(name)
+                    #print("added " + name + " to dupe\n")  
+        #print("namelst: ", nameList)
         ext = "Duplicates"
         new_dir = os.path.join(dir, ext)
         if not os.path.exists(new_dir):
             os.mkdir(ext)
         for file in os.listdir(dir):
             for dupe in dupeList:
-                if os.path.basename(file).__contains__(dupe):
+                title = os.path.splitext(os.path.basename(file))[0].lower().split("(")[0]   # get lowered title
+                if title == dupe.lower():  # split text to remove file ext
                     try:
                         print(fg_good + "Moving " + fg_prompt + file + fg_good  + " to " + fg_prompt + new_dir + fg_reset)
                         shutil.move(file, new_dir)
@@ -290,7 +298,7 @@ def extractExtras(prevDir):
             print(fg_good + "Created directory " + ext_dir + fg_reset)
             os.makedirs(ext)
 
-        extrasList = ["(Beta", "Beta)", "(Proto", "Proto)", "(Demo", "Demo)", "(Aftermarket", "(Tech Demo", "(Unknown", "(Sample", "(Unl"]
+        extrasList = ["(Beta", "Beta)", "(Proto", "Proto)", "(Demo", "Demo)", "(Aftermarket", "(Tech Demo", "(Unknown", "(Sample", "(Unl", "[BIOS]"]
 
         for file in os.listdir(dir):
             if os.path.isfile(file):

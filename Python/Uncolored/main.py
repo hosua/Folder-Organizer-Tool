@@ -16,7 +16,7 @@ if not colored:
 lastDir = "   "
 def main():
     global lastDir
-    print("Folder Organizer Tool v0.8.0")
+    print("Folder Organizer Tool v0.8.1")
     print(fg_title + 	 "  __  __           _        _             _   _                               \n"
 	" |  \\/  | __ _  __| | ___  | |__  _   _  | | | | ___  _____      _____   ___  \n"
 	" | |\\/| |/ _` |/ _` |/ _ \\ | '_ \\| | | | | |_| |/ _ \\/ __\\ \\ /\\ / / _ \\ / _ \\ \n"
