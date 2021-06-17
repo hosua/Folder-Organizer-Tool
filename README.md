@@ -25,11 +25,11 @@ This tool is useful for managing folders with lots of files. I mainly made it to
 # Issues
 I don't know how to make the binary files for Mac users. However, if you have python you can just run it via the script instead.
 
+Duplicate folder also detects multiple-disc ROMs as duplicates, will work on a fix.
+
 Duplicate ROM grabber is actually grabbing a few more ROMs than it's supposed to. No idea why but I'm working on a fix. FIXED in v0.8.1 release
 
 Extract and keep files containing was grabbing directories if they were present, also was causing errors when using capital letters. FIXED in 0.8.1.
-
-Duplicate folder also detects multiple-disc ROMs as duplicates, working on a fix.
 
 
 
