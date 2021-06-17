@@ -32,7 +32,7 @@ If you used the older versions and are wondering why the new version is a much l
 
 # Current version (v0.8.0+)
 
-Since quite a few things have changed since the previous version, I rewrote the readme. If you are using and older version and don't want to upgrade, the readme for the legacy versions will be below.
+Since quite a few things have changed since the previous version, I rewrote the readme. If you are using and older version and don't want to upgrade, the readme for the legacy versions will still be below.
 
 ## Getting Started
 
@@ -93,7 +93,9 @@ Then just run main.py via the python command.
 
 
 
-## 1) Extract files containing
+## 1. Extract files containing
+
+This function will ask the user for input, then extract any files in the folder that contain that input within their name.
 
 First, you will be prompted to enter your directory. Just copy any paste whatever directory you want to work with and hit enter.
 
@@ -109,6 +111,77 @@ Once you enter the substring you're extracting, type y to confirm.
 Then the program will show you the files being moved, and all the files you wanted to extract will now be in another folder!
 
 ![107](https://i.imgur.com/PKOr4qB.png)
+
+## 2. Keep files containing
+
+This function will ask the user for input, and keep any files in the directory that contain that input within their name.
+
+Once again, you will be prompted to enter the directory. If you're using the same directory as before, you can just leave it blank and hit enter.
+
+Let's say I'm in the US and want to move all ROMs from other regions to another folder. In my case, I will type (U) to do this. 
+
+Note: In some ROM sets, some ROMs will be labelled with (USA, Europe), so in that case, I would type (USA to grab all of the US ROMs. Be wary about this as you may miss some ROMs from your region if you're not careful.
+
+![108](https://i.imgur.com/rtuso9g.png)
+
+Once again, type y to confirm and then you will see this, then all the files you didn't want will be in a folder named "Extracted".
+
+![109](https://i.imgur.com/LUKbgx2.png)
+
+## 3. Alphabetize Folders
+
+This function will ask the user how many letters the user wants for each directory, then it will alphabetically-sort all the files into their respective directories.
+
+Once again, you will be prompted to enter the directory.
+
+Then it will ask you how many letters you want per directory. I will use 3 in this example.
+
+![110](https://i.imgur.com/JXUWh3w.png)
+
+Type y to confirm, then you will see this and your files will be sorted alphabetically!
+
+![111](https://i.imgur.com/ANE0wki.png)
+
+## 4. Extract all folders in directory
+
+If you've been following this guide, you might eventually want to undo something. This function will extract every folder in the directory you enter! Note that this includes directories that were not created by the program, so be careful using this!
+
+Just enter the directory, and type y to confirm.
+
+![112](https://i.imgur.com/zacyAY1.png)
+
+All the folders in your directory should now be extracted!
+
+![113](https://i.imgur.com/VajnxAu.png)
+
+## 5. Show directory
+
+Self explanatory, shows all directories and files in the directory.
+
+
+## 6. Extract Duplicate ROMs
+
+This function will check all ROM titles in the folder and list the duplicates. This works by checking for the first '(' in the file name, so if your ROMs are improperly titled, this will not work!
+
+Note: This also detects mutiple-disc ROMs as duplicates. Please take care to put these ROMs back where you want them!
+
+Just enter the directory you want to use, and type y to confirm.
+
+![114](https://i.imgur.com/KQEVs1m.png)
+
+Then you should see this, and any duplicate titles will now be in another folder!
+
+![115](https://i.imgur.com/zeoNvOZ.png)
+
+## 7. Extract extras
+
+This will grab any ROMs that are tagged as betas, unlicensed, demos, prototypes, etc and put them into a separate folder. Essentially, the more obscure ROMs that most people do not want will be extracted.
+
+Once again, just enter the directory, and type y to confirm.
+
+![116](https://i.imgur.com/NVtOxSA.png)
+
+Now, all of the extra files will be in their own folder!
 
 # Legacy versions (v0.7.2 and below)
 
