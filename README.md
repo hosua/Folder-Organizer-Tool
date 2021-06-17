@@ -2,7 +2,26 @@
 This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection. Works on Windows/Linux. It can work on Mac, but you will have to run it via Python. 
 
 # Table of Contents
-
+- [ISSUES](#issues)
+- [Changelog](#changelog)
+- [DISCLAIMER](#disclaimer)
+- [Current version (v0.8.0+)](#current-version-v080)
+  - [Getting Started](#getting-started)
+  - [1. Extract files containing](#1-extract-files-containing)
+  - [2. Keep files containing](#2-keep-files-containing)
+  - [3. Alphabetize Folders](#3-alphabetize-folders)
+  - [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
+  - [5. Show directory](#5-show-directory)
+  - [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
+  - [7. Extract extras](#7-extract-extras)
+- [Legacy versions (v0.7.2 and below)](#legacy-versions-v072-and-below)
+  - [Getting Started](#getting-started)
+  - [1. Move/Remove all files except](#1-moveremove-all-files-except)
+  - [2. Move/Remove all files containing](#2-moveremove-all-files-containing)
+  - [3. Alphabetize Folders](#3-alphabetize-folders)
+  - [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
+  - [5. Show directory](#5-show-directory)
+  - [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
 # ISSUES
 I don't know how to make the binary files for Mac users. However, if you have python you can just run it via the script instead.
 
