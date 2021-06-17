@@ -27,7 +27,7 @@ I don't know how to make the binary files for Mac users. However, if you have py
 
 Duplicate ROM grabber is actually grabbing a few more ROMs than it's supposed to. No idea why but I'm working on a fix. FIXED in v0.8.1 release
 
-
+Extract files containing was grabbing directories if they were present, will be fixed in 0.8.1
 
 Duplicate folder also detects multiple-disc ROMs as duplicates, working on a fix.
 
