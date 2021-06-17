@@ -27,9 +27,6 @@ I don't know how to make the binary files for Mac users. However, if you have py
 
 Duplicate folder also detects multiple-disc ROMs as duplicates, will work on a fix.
 
-Extract and keep files containing was grabbing directories if they were present, also was causing errors when using capital letters. FIXED in 0.8.1.
-
-
 
 # Changelog
 
