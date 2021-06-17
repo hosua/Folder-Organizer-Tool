@@ -59,29 +59,23 @@ Since quite a few things have changed since the previous version, I rewrote the 
 
 If you are using Windows, the native command prompt will not properly display colors. If you don't care about the colors, a non-colored version of the program is provided. Just run the executable of the uncolored version and you should be good to go.
 
-If you want the colors to display properly, you will have to use another terminal. I will use git terminal as an example since it's the easiest to use in my opinion. Note that this is only necessary if you are on Windows, want colors, and don't have another terminal to use!
+If you want the colors to display properly, you will have to use another terminal. I personally use the VSCode terminal, but I'm sure there are others that work with colors too.
 
-1) Download [git](https://gitforwindows.org/) and run the installer.
+First get and install ![VSCode](https://code.visualstudio.com/download)
 
-2) When you get to the second step of the installer, make sure "Git Bash Here" is checked off. This should be done by default, so just leave everything alone and just install git.
+Once VSCode is running, on the top-left, click File>Open Folder, then open the folder you downloaded the tool at.
 
-![101](https://i.imgur.com/vocsHio.png)
+Once your folder is opened, click Terminal>New Terminal and then a terminal should open. 
 
-3) After you install git, go to the directory where you installed the Folder-Organizer-Tool via file explorer, right click, then select "Git Bash here"
+![117](https://i.imgur.com/MBGC7HF.png)
 
-![102](https://i.imgur.com/b65I1Ie.png)
-
-4) You should now have a terminal open. To show your current directory, type 
-
-> dir
-
-5) To open a program via the terminal, you just need to type ./filename once you are in its directory. Therefore, to open the program, you would type
+Now to open the executable in the terminal, type this into the terminal
 
 > ./Folder-Organizer-Tool-colored-v0.8.0.exe
 
-![103](https://i.imgur.com/UixVlK6.png)
+and then the program should run!
 
-6) Now your program should be open. Note that if the version changes and I forget to update this part of the readme, just change the file name to whatever version you downloaded.
+![118](https://i.imgur.com/nFGDl2F.png)
 
 ### Linux Users
 
