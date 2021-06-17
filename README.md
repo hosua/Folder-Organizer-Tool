@@ -96,7 +96,7 @@ After downloading the file, extract it to some directory. Open your terminal and
 
 ### Mac Users, or those using Python in general
 
-If you are running it with Python, make sure that you first download python. Then download the shutil and colorama packages via pip
+If you are running the program with Python, make sure that you first download python. Then download the shutil and colorama packages via pip
 
 > pip install shutil
 
