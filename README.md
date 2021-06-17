@@ -27,11 +27,6 @@ I don't know how to make the binary files for Mac users. However, if you have py
 
 Duplicate folder also detects multiple-disc ROMs as duplicates, will work on a fix.
 
-Duplicate ROM grabber is actually grabbing a few more ROMs than it's supposed to. No idea why but I'm working on a fix. FIXED in v0.8.1 release
-
-Extract and keep files containing was grabbing directories if they were present, also was causing errors when using capital letters. FIXED in 0.8.1.
-
-
 
 # Changelog
 
@@ -51,6 +46,8 @@ Unalphabetize folders renamed to extract folders as it is a better description f
 5/30/2021 - Fixed show directory to now refresh every time changes are made. Fixed a few text outputs that were not behaving correctly. - v0.7.2-alpha
 
 6/17/2021 - Program was rewritten in Python. Extract extras (betas, demos, etc) feature added. UTF-32 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this instead. - v0.8.0-beta
+
+6/17/2021 - Duplicate ROM grabber was grabbing more ROMs than it was supposed to. This has been fixed. Extract and Keep file functions now no longer grab folders. Weird case sensitivity issue that was present in 0.8.0 was also fixed. v0.8.1-beta
 
 # Disclaimer 
 I am not responsible for anything that goes wrong either due to bugs or user-negligence, so please back up your files if you're using this tool on anything important.
