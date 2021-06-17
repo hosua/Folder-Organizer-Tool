@@ -61,7 +61,7 @@ If you are using Windows, the native command prompt will not properly display co
 
 If you want the colors to display properly, you will have to use another terminal. I personally use the VSCode terminal, but I'm sure there are others that work with colors too.
 
-First get and install [VSCode](https://code.visualstudio.com/download)
+So, if you really want the colors to work on Windows (ignore this if you're getting the uncolored version) first get and install [VSCode](https://code.visualstudio.com/download)
 
 Once VSCode is running, on the top-left, click File>Open Folder, then open the folder you downloaded the tool at.
 
