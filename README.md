@@ -2,9 +2,9 @@
 This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection. Works on Windows/Linux. It can work on Mac, but you will have to run it via Python. 
 
 # Table of Contents
-- [ISSUES](#issues)
+- [Issues](#issues)
 - [Changelog](#changelog)
-- [DISCLAIMER](#disclaimer)
+- [Disclaimer](#disclaimer)
 - [Current version (v0.8.0+)](#current-version-v080)
   - [Getting Started](#getting-started)
   - [1. Extract files containing](#1-extract-files-containing)
@@ -22,7 +22,7 @@ This tool is useful for managing folders with lots of files. I mainly made it to
   - [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
   - [5. Show directory](#5-show-directory)
   - [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
-# ISSUES
+# Issues
 I don't know how to make the binary files for Mac users. However, if you have python you can just run it via the script instead.
 
 # Changelog
@@ -44,7 +44,7 @@ Unalphabetize folders renamed to extract folders as it is a better description f
 
 6/17/2021 - Program was rewritten in Python. Extract extras (betas, demos, etc) feature added. UTF-32 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this instead. - v0.8.0-beta
 
-# DISCLAIMER 
+# Disclaimer 
 I am not responsible for anything that goes wrong either due to bugs or user-negligence, so please back up your files if you're using this tool on anything important.
 
 If you used the older versions and are wondering why the new version is a much larger file size, it's because I am no longer using C++ to write this. I switched to Python and the executables that are made using Python are just much bigger in size. 
