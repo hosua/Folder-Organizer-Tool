@@ -1,23 +1,27 @@
 # Folder Organizer Tool - Made by Hoswoo/Hosua
 This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection. Works on Windows/Linux. It can work on Mac, but you will have to run it via Python. 
 
-If you are running it with Python, make sure that you download the shutil and colorama packages via these commands.
-
-> pip install shutil
-
-> pip install colorama
-
-Then change to the directory you installed the files and run the program with these commands (replace \path\to\file\Colored\ with the directory you used)
-
-> cd \path\to\file\Colored\
-
-Then just run main.py via the python command.
-
-> python main.py
-
-
 # Table of Contents
-
+- [ISSUES](#issues)
+- [Changelog](#changelog)
+- [DISCLAIMER](#disclaimer)
+- [Current version (v0.8.0+)](#current-version-v080)
+  - [Getting Started](#getting-started)
+  - [1. Extract files containing](#1-extract-files-containing)
+  - [2. Keep files containing](#2-keep-files-containing)
+  - [3. Alphabetize Folders](#3-alphabetize-folders)
+  - [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
+  - [5. Show directory](#5-show-directory)
+  - [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
+  - [7. Extract extras](#7-extract-extras)
+- [Legacy versions (v0.7.2 and below)](#legacy-versions-v072-and-below)
+  - [Getting Started](#getting-started)
+  - [1. Move/Remove all files except](#1-moveremove-all-files-except)
+  - [2. Move/Remove all files containing](#2-moveremove-all-files-containing)
+  - [3. Alphabetize Folders](#3-alphabetize-folders)
+  - [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
+  - [5. Show directory](#5-show-directory)
+  - [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
 # ISSUES
 I don't know how to make the binary files for Mac users. However, if you have python you can just run it via the script instead.
 
@@ -38,7 +42,7 @@ Unalphabetize folders renamed to extract folders as it is a better description f
 
 5/30/2021 - Fixed show directory to now refresh every time changes are made. Fixed a few text outputs that were not behaving correctly. - v0.7.2-alpha
 
-6/17/2021 - Program was rewritten in Python. UTF-32 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this so that it can be handled by the Recycling Bin.
+6/17/2021 - Program was rewritten in Python. Extract extras (betas, demos, etc) feature added. UTF-32 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this instead. - v0.8.0-beta
 
 # DISCLAIMER 
 I am not responsible for anything that goes wrong either due to bugs or user-negligence, so please back up your files if you're using this tool on anything important.
@@ -47,13 +51,15 @@ If you used the older versions and are wondering why the new version is a much l
 
 # Current version (v0.8.0+)
 
+Since quite a few things have changed since the previous version, I rewrote the readme. If you are using and older version and don't want to upgrade, the readme for the legacy versions will still be below.
+
 ## Getting Started
 
 ### Windows Users
 
 If you are using Windows, the native command prompt will not properly display colors. If you don't care about the colors, a non-colored version of the program is provided. Just run the executable of the uncolored version and you should be good to go.
 
-If you want the colors to display properly, you will have to use another terminal. I will use git terminal as an example since it's the easiest to use. Note that this is only necessary if you are on Windows, want colors, and don't have another terminal to use!
+If you want the colors to display properly, you will have to use another terminal. I will use git terminal as an example since it's the easiest to use in my opinion. Note that this is only necessary if you are on Windows, want colors, and don't have another terminal to use!
 
 1) Download [git](https://gitforwindows.org/) and run the installer.
 
@@ -77,7 +83,128 @@ If you want the colors to display properly, you will have to use another termina
 
 6) Now your program should be open. Note that if the version changes and I forget to update this part of the readme, just change the file name to whatever version you downloaded.
 
+### Linux Users
+
+After downloading the file, extract it to some directory. Open your terminal and use the following commands
+
+> cd /to/your/path
+
+> ./Folder-Organizer-Tool-colored-v0.8.0-linux
+
+![104](https://i.imgur.com/Vji4paQ.png)
+
+
+### Mac Users, or those using Python in general
+
+If you are running it with Python, make sure that you first download python. Then download the shutil and colorama packages via pip
+
+> pip install shutil
+
+> pip install colorama
+
+Then change to the directory you installed the files and run the program with these commands (replace \path\to\file\ with the directory you used)
+
+> cd \path\to\file\
+
+Then just run main.py via the python command.
+
+> python main.py
+
+
+
+## 1. Extract files containing
+
+This function will ask the user for input, then extract any files in the folder that contain that input within their name.
+
+First, you will be prompted to enter your directory. Just copy any paste whatever directory you want to work with and hit enter.
+
+![105](https://i.imgur.com/qTyOFWV.png)
+
+Then you will be prompted to enter a substring to extract. Lets say I'm located in the US, and want to get rid of the Japan ROMs in a directory. To do this, I would type (J) in this case (note that different ROM sets may use different naming conventions).
+
+
+Once you enter the substring you're extracting, type y to confirm.
+
+![106](https://i.imgur.com/lpe9SBN.png)
+
+Then the program will show you the files being moved, and all the files you wanted to extract will now be in another folder!
+
+![107](https://i.imgur.com/PKOr4qB.png)
+
+## 2. Keep files containing
+
+This function will ask the user for input, and keep any files in the directory that contain that input within their name.
+
+Once again, you will be prompted to enter the directory. If you're using the same directory as before, you can just leave it blank and hit enter.
+
+Let's say I'm in the US and want to move all ROMs from other regions to another folder. In my case, I will type (U) to do this. 
+
+Note: In some ROM sets, some ROMs will be labelled with (USA, Europe), so in that case, I would type (USA to grab all of the US ROMs. Be wary about this as you may miss some ROMs from your region if you're not careful.
+
+![108](https://i.imgur.com/rtuso9g.png)
+
+Once again, type y to confirm and then you will see this, then all the files you didn't want will be in a folder named "Extracted".
+
+![109](https://i.imgur.com/LUKbgx2.png)
+
+## 3. Alphabetize Folders
+
+This function will ask the user how many letters the user wants for each directory, then it will alphabetically-sort all the files into their respective directories.
+
+Once again, you will be prompted to enter the directory.
+
+Then it will ask you how many letters you want per directory. I will use 3 in this example.
+
+![110](https://i.imgur.com/JXUWh3w.png)
+
+Type y to confirm, then you will see this and your files will be sorted alphabetically!
+
+![111](https://i.imgur.com/ANE0wki.png)
+
+## 4. Extract all folders in directory
+
+If you've been following this guide, you might eventually want to undo something. This function will extract every folder in the directory you enter! Note that this includes directories that were not created by the program, so be careful using this!
+
+Just enter the directory, and type y to confirm.
+
+![112](https://i.imgur.com/zacyAY1.png)
+
+All the folders in your directory should now be extracted!
+
+![113](https://i.imgur.com/VajnxAu.png)
+
+## 5. Show directory
+
+Self explanatory, shows all directories and files in the directory.
+
+
+## 6. Extract Duplicate ROMs
+
+This function will check all ROM titles in the folder and list the duplicates. This works by checking for the first '(' in the file name, so if your ROMs are improperly titled, this will not work!
+
+Note: This also detects mutiple-disc ROMs as duplicates. Please take care to put these ROMs back where you want them!
+
+Just enter the directory you want to use, and type y to confirm.
+
+![114](https://i.imgur.com/KQEVs1m.png)
+
+Then you should see this, and any duplicate titles will now be in another folder!
+
+![115](https://i.imgur.com/zeoNvOZ.png)
+
+## 7. Extract extras
+
+This will grab any ROMs that are tagged as betas, unlicensed, demos, prototypes, etc and put them into a separate folder. Essentially, the more obscure ROMs that most people do not want will be extracted.
+
+Once again, just enter the directory, and type y to confirm.
+
+![116](https://i.imgur.com/NVtOxSA.png)
+
+Now, all of the extra files will be in their own folder!
+
 # Legacy versions (v0.7.2 and below)
+
+This is for the older versions of the program. If you're still using these I recommend you upgrade to the newer version!
 
 ## Getting Started
 
