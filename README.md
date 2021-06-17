@@ -1,19 +1,27 @@
 # Folder Organizer Tool - Made by Hoswoo/Hosua
-This windows-based tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection.
+This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection. Works on Windows/Linux. It can work on Mac, but you will have to run it via Python. 
 
-# Table of contents
+If you are running it with Python, make sure that you download the shutil and colorama packages via these commands.
 
-- [Folder Organizer Tool - Made by Hoswoo/Hosua](#folder-organizer-tool---made-by-hoswoohosua)
-- [Table of contents](#table-of-contents)
-- [Getting Started](#getting-started)
-- [1. Move/Remove all files except](#1-moveremove-all-files-except)
-- [2. Move/Remove all files containing](#2-moveremove-all-files-containing)
-- [3. Alphabetize Folders](#3-alphabetize-folders)
-- [4. Extract all folders in directory](#4-extract-all-folders-in-directory)
-- [5. Show directory](#5-show-directory)
-- [6. Extract Duplicate ROMs](#6-extract-duplicate-roms)
+> pip install shutil
 
-### CHANGELOG:
+> pip install colorama
+
+Then change to the directory you installed the files and run the program with these commands (replace \path\to\file\Colored\ with the directory you used)
+
+> cd \path\to\file\Colored\
+
+Then just run main.py via the python command.
+
+> python main.py
+
+
+# Table of Contents
+
+# ISSUES
+I don't know how to make the binary files for Mac users. However, if you have python you can just run it via the script instead.
+
+# Changelog
 
 5/24/2021 - First revision released. - v0.4-alpha
 
@@ -30,18 +38,48 @@ Unalphabetize folders renamed to extract folders as it is a better description f
 
 5/30/2021 - Fixed show directory to now refresh every time changes are made. Fixed a few text outputs that were not behaving correctly. - v0.7.2-alpha
 
-### DISCLAIMER: 
-There are likely bugs present in this program. It worked for me, but it has only been tested a few times so please back up your files before using this tool!
+6/17/2021 - Program was rewritten in Python. UTF-32 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this so that it can be handled by the Recycling Bin.
 
+# DISCLAIMER 
+I am not responsible for anything that goes wrong either due to bugs or user-negligence, so please back up your files if you're using this tool on anything important.
 
-### ISSUES:
-1) There is no way to change the directory while the program is running, simply restart the program to do this.
-2) If you modify the folders externally while running the program, it will potentially mess things up.
-3) The source code is incompatible with Mac and Linux, sorry!
-4) Certain unicode characters (UTF-16+) are not supported. If you run into a file with a character that can't be read, try to narrow down which file it is and rename it.
+If you used the older versions and are wondering why the new version is a much larger file size, it's because I am no longer using C++ to write this. I switched to Python and the executables that are made using Python are just much bigger in size. 
 
+# Current version (v0.8.0+)
 
-# Getting Started
+## Getting Started
+
+### Windows Users
+
+If you are using Windows, the native command prompt will not properly display colors. If you don't care about the colors, a non-colored version of the program is provided. Just run the executable of the uncolored version and you should be good to go.
+
+If you want the colors to display properly, you will have to use another terminal. I will use git terminal as an example since it's the easiest to use. Note that this is only necessary if you are on Windows, want colors, and don't have another terminal to use!
+
+1) Download [git](https://gitforwindows.org/) and run the installer.
+
+2) When you get to the second step of the installer, make sure "Git Bash Here" is checked off. This should be done by default, so just leave everything alone and just install git.
+
+![101](https://i.imgur.com/vocsHio.png)
+
+3) After you install git, go to the directory where you installed the Folder-Organizer-Tool via file explorer, right click, then select "Git Bash here"
+
+![102](https://i.imgur.com/b65I1Ie.png)
+
+4) You should now have a terminal open. To show your current directory, type 
+
+> dir
+
+5) To open a program via the terminal, you just need to type ./filename once you are in its directory. Therefore, to open the program, you would type
+
+> ./Folder-Organizer-Tool-colored-v0.8.0.exe
+
+![103](https://i.imgur.com/UixVlK6.png)
+
+6) Now your program should be open. Note that if the version changes and I forget to update this part of the readme, just change the file name to whatever version you downloaded.
+
+# Legacy versions (v0.7.2 and below)
+
+## Getting Started
 
 When you first open the program, you will be prompted to enter the directory to the folder you want to modify.
 
@@ -55,7 +93,7 @@ Once you enter a valid folder path, you will be given the following options.
 
 ![2](https://user-images.githubusercontent.com/22788738/119891677-451ae980-bf07-11eb-9670-3f4b4a12b26d.png)
 
-# 1. Move/Remove all files except
+## 1. Move/Remove all files except
 
 This will take text entered by the user. 
 
@@ -79,7 +117,7 @@ All of the files you didn't want should now be gone or in a folder labelled "Sep
 
 ![5](https://user-images.githubusercontent.com/22788738/119889834-1439b500-bf05-11eb-9f00-4370ed241fba.png)
 
-# 2. Move/Remove all files containing
+## 2. Move/Remove all files containing
 
 This is essentially the opposite of the previous function.
 
@@ -99,7 +137,7 @@ And assuming everything went well, the files you didn't want should now be moved
 
 ![7_5](https://user-images.githubusercontent.com/22788738/119890523-ef920d00-bf05-11eb-935e-1465519741e5.png)
 
-# 3. Alphabetize Folders
+## 3. Alphabetize Folders
 
 Alphabetize folders lets you sort all your files alphabetically.
 
@@ -119,7 +157,7 @@ NOTE: If any folders are empty after this process, they will automatically be de
 
 ![10](https://user-images.githubusercontent.com/22788738/119654243-3abcfa80-bdf6-11eb-9306-045ab1f2ec5a.png)
 
-# 4. Extract all folders in directory
+## 4. Extract all folders in directory
 
 If you wish to undo any of the previous functions, this will do just that.
 
@@ -138,14 +176,14 @@ Once it's done, your folders will be unorganized again.
 
 ![13](https://user-images.githubusercontent.com/22788738/119491000-750d9580-bd2b-11eb-8b5f-e25753ff23ab.png)
 
-# 5. Show directory
+## 5. Show directory
 
 I mainly put this here to let the user verify that they are actually in the right folder.
 It will simply show you the directory.
 
 ![14](https://user-images.githubusercontent.com/22788738/119491210-aab27e80-bd2b-11eb-82bc-147c86e2e607.png)
 
-# 6. Extract Duplicate ROMs 
+## 6. Extract Duplicate ROMs 
 
 This function will look through a directory and move duplicate titles to their own directory. 
 Note that this will only work if your ROMs are properly titled. It will also detect multiple disk ROMs as duplicates too, so please bear that in mind.
