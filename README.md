@@ -45,7 +45,7 @@ Unalphabetize folders renamed to extract folders as it is a better description f
 
 5/30/2021 - Fixed show directory to now refresh every time changes are made. Fixed a few text outputs that were not behaving correctly. - v0.7.2-alpha
 
-6/17/2021 - Program was rewritten in Python. Extract extras (betas, demos, etc) feature added. UTF-32 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this instead. - v0.8.0-beta
+6/17/2021 - Program was rewritten in Python. Extract extras (betas, demos, etc) feature added. UTF-16 unicode characters are now supported. You can now change directories without having to reopen the program. Colors were added to text (an uncolored version is provided for Windows users because it does not display properly on the native Windows command prompt). The ability to remove files via the program is no longer available. It's better to let the user manually do this instead. - v0.8.0-beta
 
 6/17/2021 - Duplicate ROM grabber was grabbing more ROMs than it was supposed to. This has been fixed. Extract and Keep file functions now no longer grab folders. Weird case sensitivity issue that was present in 0.8.0 was also fixed. v0.8.1-beta
 
