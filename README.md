@@ -1,7 +1,7 @@
 # Folder Organizer Tool - Made by Hoswoo/Hosua
-This tool is useful for managing folders with lots of files. I mainly made it to handle my large emulator ROM collection. Works on Windows/Linux. It can work on Mac, but you will have to run it via Python. 
+This tool is useful for managing folders with lots of files. However, this program is primarily made to manage emulator ROM collections. Works best with ROMs that follow the no-intro naming conventions. Works on Windows/Linux. It can also work on Mac, but you will have to run it via Python. 
 
-Guide was moved to [wiki](https://github.com/hosua/Folder-Organizer-Tool/wiki).
+Guide was moved to the [wiki](https://github.com/hosua/Folder-Organizer-Tool/wiki).
 
 
 
