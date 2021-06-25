@@ -5,7 +5,7 @@ Screenshot of the program:
 
 ![0](https://i.imgur.com/XU7LluL.png)
 
-Guide was moved to the [wiki](https://github.com/hosua/Folder-Organizer-Tool/wiki).
+Guide was moved to the [wiki](https://github.com/hosua/Folder-Organizer-Tool/wiki/Current-Release-v0.9.0).
 
 
 
