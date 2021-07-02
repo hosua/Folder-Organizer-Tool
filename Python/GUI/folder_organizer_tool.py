@@ -17,7 +17,6 @@ if not colored:
     fg_reset = ""
 
 
-# Lot's of testing needs to be done before releasing this. Extract extras is also incomplete right now.
 
 def extractSubStr(dir, subStr):
     try:
