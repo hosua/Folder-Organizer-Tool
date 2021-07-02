@@ -2,6 +2,9 @@ from colorama import Fore, Back, Style
 import os
 import shutil
 import string
+from tkinter import messagebox
+import string
+
 colored = False
 fg_prompt = Fore.LIGHTCYAN_EX
 fg_good = Fore.GREEN
@@ -13,6 +16,8 @@ if not colored:
     fg_error = ""
     fg_reset = ""
 
+
+# Lot's of testing needs to be done before releasing this. Extract extras is also incomplete right now.
 
 def extractSubStr(dir, subStr):
     try:
@@ -32,12 +37,18 @@ def extractSubStr(dir, subStr):
                           fg_good + " to " + fg_prompt + new_dir + fg_reset)
                     shutil.move(item, new_dir)
                 except shutil.Error:
-                    print(fg_good + "The file " + fg_prompt + item + fg_good +
-                          " was already in " + fg_prompt + new_dir + fg_reset + " !")
-                    print(
-                        fg_good + "I will skip this item but you will have to manage these files yourself!" + fg_reset)
-                    continue
-
+                    print("Detected duplicate item: " + item + " in " + new_dir)
+                    isOverwriting = messagebox.askyesno("Question", "A duplicate of " + item + " was found in " + new_dir+ ". Do you want to overwrite it?")
+                    if isOverwriting:
+                        try:                        
+                            print("Copying " + item + " to " + new_dir)
+                            shutil.copy(item, new_dir)  # Copying will either create or overwrite
+                        except shutil.SameFileError:
+                            pass    # unless they're exactly the same
+                        print("Removing " + item + " from " + dir)
+                        os.remove(item)
+                    else:
+                        print("Ignoring " +item + " in " + dir)
     print(fg_good + "Process completed...\n\n" + fg_reset)
 
 
@@ -68,7 +79,17 @@ def keepSubStr(dir, subStr):
                           fg_good + " to " + fg_prompt + new_dir + fg_reset)
                     shutil.move(item, new_dir)
                 except shutil.Error:
-                    print("Skipped a duplicate file")
+                    print("Detected duplicate item: " + item + " in " + new_dir)
+                    isOverwriting = messagebox.askyesno("Question", "A duplicate of " + item + 
+                                " was found in " + new_dir + ". Do you want to overwrite it?")
+                    if isOverwriting:
+                        print("Copying " + item + " to " + new_dir)
+                        shutil.copy(item, new_dir)  # Copying will either create or overwrite, no matter what.
+                        print("Removing " + item + " from " + dir)
+                        os.remove(item)
+                    else:
+                        print("Ignoring " + item + " in " + dir)
+                    continue
     print(fg_good + "Process completed with no errors...\n\n" + fg_reset)
     return dir
 
@@ -82,20 +103,32 @@ def extractAllFolders(dir):
 
     for item in os.listdir(dir):
         new_path = os.path.join(dir, item)
-        if os.path.isdir(new_path):  # if new_item is a dir
-            for file in os.listdir(new_path):
+        if os.path.isdir(new_path):  # ensure were not a file
+            for file in os.listdir(new_path):   # File isn't just files, but also dirs.
                 filePath = os.path.join(new_path, file)
-                print(fg_good + "Moving " + fg_prompt + file +
-                      fg_good + " to " + fg_prompt + dir + fg_reset)
                 try:
-                    shutil.move(filePath, dir)  # move file to root dir
+                    print(fg_good + "Moving " + fg_prompt + file +
+                        fg_good + " to " + fg_prompt + dir + fg_reset)
+                    shutil.move(filePath, dir)
                 except shutil.Error:
-                    print("Could not move a file because it was a duplicate")
-
+                    print("Detected duplicate item " + file + " in " + dir)
+                    isOverwriting = messagebox.askyesno("Warning", "A duplicate of " + file + 
+                                " was found in " + dir + ". Do you want to overwrite it?")
+                    if isOverwriting:
+                        print("Copying " + file + " to " + dir)
+                        try:
+                            shutil.copy(filePath, dir)  # Copying will overwrite unless files are exactly the same.
+                        except shutil.SameFileError:    # Just pass in this case.
+                            pass
+                        print("Removing " + os.path.basename(filePath) + " from " + filePath)
+                        os.remove(filePath)
+                    else:
+                        print("Ignoring " + os.path.basename(filePath) + " in " + filePath)
+                    continue
     for item in os.listdir(dir):
         new_path = os.path.join(dir, item)
         if os.path.isdir(new_path) and len(os.listdir(new_path)) == 0:
-            print(fg_error + "Removing " + new_path + fg_reset)
+            print(fg_error + "Removing " + new_path + " because it was empty." + fg_reset)
             os.rmdir(new_path)
     print(fg_good + "Process completed with no errors...\n\n" + fg_reset)
     return dir
@@ -107,7 +140,7 @@ def alphabetizeFolders(dir, numLetters=3):
         start = 0
         end = numLetters
         while end < len(string.ascii_uppercase)+1:
-            folderNames.append(string.ascii_uppercase[start:end])
+            folderNames.append(string.ascii_uppercase[start:end])            
             start += numLetters
             end += numLetters
         currAlpha = ""
@@ -146,49 +179,62 @@ def alphabetizeFolders(dir, numLetters=3):
     for item in folderNameList:
         folderPathList.append(os.path.join(dir, item))
 
-    for file in os.listdir(dir):    # sort each file into the folders we created
-        if os.path.isfile(file):
-            for folder in folderPathList:
-                new_dir = os.path.join(dir, folder)
-                if file[0].upper() in os.path.basename(folder):
-                    try:
-                        print(fg_good + "Moving " + fg_prompt + file +
-                              fg_good + " to " + fg_prompt + folder + fg_reset)
-                        shutil.move(file, new_dir)
-                    except shutil.SameFileError:
-                        print("Skipping file because it was a duplicate")
+    for folder in folderPathList:    # For each alphabetized folder
+        new_dir = os.path.join(dir, folder)
+        for file in os.listdir(dir):
+            if os.path.isfile(file) and file[0].upper() in os.path.basename(folder):
+                try:
+                    print(fg_good + "Moving " + fg_prompt + file +
+                        fg_good + " to " + fg_prompt + new_dir + fg_reset)
+                    shutil.move(file, new_dir)
+                except shutil.Error:
+                    print("Detected duplicate item " + file + " in " + new_dir)
+                    isOverwriting = messagebox.askyesno("Question", "A duplicate of " + file + 
+                                " was found in " + new_dir + ". Do you want to overwrite it?")
+                    if isOverwriting:
+                        print("Copying " + file + " to " + new_dir)
+                        try:
+                            shutil.copy(file, new_dir)  # Copying will overwrite unless files are exactly the same.
+                        except shutil.SameFileError:    # Just pass in this case.
+                            pass
+                        print("Removing " + file + " from " + new_dir)
+                        os.remove(file)
+                    else:
+                        print("Ignoring " + file + " in " + new_dir)
 
-    # move the left over filse that didn't get sorted into #
+    # move the left over files that didn't get sorted into #
     for file in os.listdir(dir):
-        if os.path.isfile(file):
+        # Ensure we don't grab duplicates that the user didn't overwrite
+        if os.path.isfile(file) and not file[0] in string.ascii_letters:   
             try:
                 print(fg_good + "Moving " + fg_prompt + file +
                       fg_good + " to " + fg_prompt + misc_dir + fg_reset)
                 shutil.move(file, misc_dir)
-            except shutil.SameFileError:
-                print("Skipping file because it was a duplicate")
+            except shutil.Error:
+                print("Detected duplicate item " + file + " in " + misc_dir)
+                isOverwriting = messagebox.askyesno("Question", "A duplicate of " + file + 
+                            " was found in " + misc_dir + ". Do you want to overwrite it?")
+                if isOverwriting:
+                    try:
+                        print("Copying " + file + " to " + misc_dir)
+                        shutil.copy(file, misc_dir)  # Copying will overwrite unless files are exactly the same.
+                    except shutil.SameFileError:    # Just pass in this case.
+                        pass
+                    print("Removing " + file + " from " + misc_dir)
+                    os.remove(file)
+                else:
+                    print("Ignoring " + file + " in " + misc_dir)
+
+    for item in os.listdir(dir):    # Remove empties
+        if os.path.isdir(item) and len(os.listdir(item)) == 0:
+            print(fg_error + "Removing " + item + " because it was empty." + fg_reset)
+            os.rmdir(item)
     print(fg_good + "Process completed with no errors...\n\n" + fg_reset)
     return dir
 
 
-def showDir(dir):
-    try:
-        os.chdir(dir)
-    except FileNotFoundError:
-        print(fg_error + "Bad directory... stopping process." + fg_reset + "\n")
-        return
-
-    for file in os.listdir(dir):
-        if os.path.isfile(file):
-            print(fg_prompt + file + fg_reset)
-        else:   # show directories as white
-            print(file)
-
-    print(fg_good + "Process completed...\n\n" + fg_reset)
-    return dir
-
-
-def extractDuplicates(dir):  # Still need to find a way to omit multi-disc games
+# Still need to find a way to omit multi-disc games
+def extractDuplicates(dir):  
     try:
         os.chdir(dir)
     except FileNotFoundError or OSError:
@@ -202,71 +248,95 @@ def extractDuplicates(dir):  # Still need to find a way to omit multi-disc games
             name = file.split("(")[0]
             if name not in nameList:
                 nameList.append(name)
-                #print("added " + name + " to lst\n")
-            else:
-                if name not in dupeList:    # only get one instance of each dupe
-                    dupeList.append(name)
-                #print("added " + name + " to dupe\n")
-    #print("namelst: ", nameList)
-    ext = "Duplicates"
-    new_dir = os.path.join(dir, ext)
-    if not os.path.exists(new_dir):
-        os.mkdir(ext)
-    for file in os.listdir(dir):
-        for dupe in dupeList:
-            title = os.path.splitext(os.path.basename(file))[0].lower().split(
-                "(")[0]   # get lowered title
-            if title == dupe.lower():  # split text to remove file ext
+            elif name not in dupeList:            
+                dupeList.append(name)
+    dupe_dir = os.path.join(dir, "Duplicates")
+    if not os.path.exists(dupe_dir):
+        os.mkdir("Duplicates") 
+    for file in os.listdir(dir): # split text to remove file extension            
+        for dupe in dupeList: # and get lower-cased title
+            title = os.path.splitext(os.path.basename(file))[0].lower().split("(")[0]   
+            if title == dupe.lower():               
                 try:
                     print(fg_good + "Moving " + fg_prompt + file +
-                          fg_good + " to " + fg_prompt + new_dir + fg_reset)
-                    shutil.move(file, new_dir)
-                    break   # break here so we don't try moving the same file to the directory again
-                # Now this error should never happen, but I'll leave it just incase.
+                          fg_good + " to " + fg_prompt + dupe_dir + fg_reset)
+                    shutil.move(file, dupe_dir)
                 except shutil.Error:
-                    print(fg_error + "Couldn't move " + fg_prompt + file + fg_error + " to " + fg_prompt +
-                          new_dir + fg_error + " because another file or directory had the same name.\n" + fg_reset)
+                    print("Detected duplicate item: " + file + " in " + dupe_dir)
+                    isOverwriting = messagebox.askyesno("Question", "A duplicate of " + file + 
+                                " was found in " + dupe_dir + ". Do you want to overwrite it?")
+                    if isOverwriting:
+                        print("Copying " + file + " to " + dupe_dir)
+                        try:
+                            shutil.copy(file, dupe_dir)  # If it can't copy, then the files are exactly identical.
+                        except: # So just skip it.
+                            pass    
+                        print("Removing " + file + " from " + dupe_dir)
+                        os.remove(file)
+                    else:
+                        print("Ignoring " + file + " in " + dupe_dir)
+                    continue
     print(fg_good + "Process completed..." + fg_reset + "\n")
-    return dir
-
 
 def extractExtras(dir):
-
     try:
         os.chdir(dir)
     except FileNotFoundError:
         print(fg_error + "Bad directory... stopping process." + fg_reset + "\n")
         return
 
-    ext = "Extras"
-    ext_dir = os.path.join(dir, ext)
+    
+    ext_dir = os.path.join(dir, "Extras")
     if not os.path.exists(ext_dir):
         print(fg_good + "Created directory " + ext_dir + fg_reset)
-        os.makedirs(ext)
+        os.makedirs("Extras")
 
     extrasList = ["(Beta", "Beta)",
                   "(Proto", "Proto)",
                   "(Demo", "Demo)",
                   "(Tech Demo", "Tech Demo)",
-                  "(Debug", "Debug)"
-                  "(Kiosk", "Kiosk)"
-                  "(Sample", "Sample)"
-                  "(Aftermarket", "Aftermarket)"
-                  "(Unknown", "Unknown)"
-                  "(Unl", "Unl)"
-                  "(bootleg", "bootleg)"
-                  "[BIOS", "BIOS]"]
+                  "(Debug", "Debug)",
+                  "(Kiosk", "Kiosk)",
+                  "(Sample", "Sample)",
+                  "(Aftermarket", "Aftermarket)",
+                  "(Unknown", "Unknown)",
+                  "(Unl", "Unl)",
+                  "(Bootleg", "Bootleg)",
+                  "[BIOS", "BIOS]",
+                  "(Prerelease", "Prerelease)"]
+
+    # Make all dirs
+    clean_tags = [extrasList[i].strip(string.punctuation) for i in range(len(extrasList)) if i % 2 == 0] 
+    [os.mkdir(os.path.join(ext_dir, clean_tags[i])) for i in range(len(clean_tags)) if not os.path.exists(ext_dir)]
 
     for file in os.listdir(dir):
         if os.path.isfile(file):
             for tag in extrasList:
-                if file.__contains__(tag):
+                #print("file:", file, " tag:", tag)
+                if file.lower().__contains__(tag.lower()):
                     clean_tag = tag.translate(
                         str.maketrans("", "", string.punctuation))
                     destination = os.path.join(ext_dir, clean_tag)
+                    print(destination)
                     if not os.path.isdir(destination):
+                        print("making directory " + destination + " for " + file)
                         os.mkdir(destination)
-                    print(fg_good + "Moving " + fg_prompt + os.path.basename(file) +
-                          fg_good + " to " + fg_prompt + destination + fg_reset)
-                    shutil.move(file, destination)
-                    break
+                    try:
+                        print(fg_good + "Moving " + fg_prompt + file +
+                            fg_good + " to " + fg_prompt + destination + fg_reset)
+                        shutil.move(file, destination)
+                    except shutil.Error: # if there is another file with the same name
+                        print("Detected duplicate file " + file + " in " + destination)
+                        isOverwriting = messagebox.askyesno("Question", "A duplicate of " + file + 
+                                    " was found in " + destination + ". Do you want to overwrite it?")
+                        if isOverwriting:
+                            try:
+                                print("Copying " + file + " to " + destination)
+                                shutil.copy(file, destination)  # Copying will overwrite unless files are exactly the same.
+                            except shutil.SameFileError:    # Just pass in this case.
+                                pass
+                            print("Removing " + file + " from " + destination)
+                            os.remove(file)
+                        else:
+                            print("Ignoring " + file + " in " + destination)
+                    break   # Break out of tag once we hit one to avoid double counting

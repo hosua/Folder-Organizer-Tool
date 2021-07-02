@@ -7,13 +7,20 @@ import sys
 from functools import partial
 import text_redirect as tr
 
+TITLE = "Folder Organizer Tool v0.9.1 - Made by Hoswoo"
+DEBUG_MODE = False  # Don't forget to turn this off before making a release.
 
-TITLE = "Folder Organizer Tool v0.9.0 - Made by Hoswoo"
+if os.path.isfile("window_size.dat"):
+    f = open("window_size.dat", "r")
+    SIZE = f.read()
+    f.close()
+else:   # Default to this if the user doesn't have settings from before.
+    SIZE = "887x575"
+
 DARK_BLUE = '#0A3D62'
 LIGHT_BLUE = "#7ddeff"
 DARK_GREY = "#2C3335"
 CONSOLE_BG = '#A1AAB5'
-SIZE = "887x575"
 FONT_BIG = ('calibre', 12, 'bold')
 FONT = ('calibre', 10, 'bold')
 FONT_CONSOLE = ('Times', 10, 'normal')
@@ -51,22 +58,19 @@ def refresh():
         print("\nThat directory does not exist!\n")
 
 
-os.chdir(root_dir)
-if not os.path.isfile("last_dir.txt"):
-    open("last_dir.txt", "x")
-f = open("last_dir.txt", "r")
-last_dir = f.read()
+os.chdir(root_dir)  
+if not os.path.isfile("last_dir.dat"):  # Use the last directory used if available
+    open("last_dir.dat", "x")
+f = open("last_dir.dat", "r")
+last_dir = f.read().replace("\n", "")
 f.close()
-refresh()
-
 
 dir_var.set(last_dir)
 dir_var.get()
-
+refresh()
 
 refresh_btn = tk.Button(dir_frame, text="Refresh",
                         command=refresh, bg=DARK_GREY, fg=LIGHT_BLUE)
-refresh()
 
 
 def browseFiles():
@@ -95,9 +99,15 @@ console_text['yscrollcommand'] = console_scrollbar.set
 console_text.config(state="disabled")
 console_text.see("end")
 # Redirect all console stuff to text box
-sys.stdout = tr.TextRedirector(console_text)
-sys.stderr = tr.TextRedirector(console_text)
+if not DEBUG_MODE:
+    sys.stdout = tr.TextRedirector(console_text)
+    sys.stderr = tr.TextRedirector(console_text)
 
+print("Disclaimer: I am not responsible for anything that goes wrong either due to bugs or user-negligence, so please be careful and back up your files before using this just incase.\n")
+print("To get started, choose your working directory, select a function, enter an argument if necessary, then click run to start.\n")
+print("If you're unsure of what a function does, you can select the function, and click help to get a quick description of it.\n")
+print("If you need more help, try check the wiki here: https://github.com/hosua/Folder-Organizer-Tool/wiki/Current-Release-v0.9.0\n")
+print("When exiting the program, use the Quit button to save your window size for next time.\n")
 
 # Functions stuff
 functions_frame = tk.Frame(console_frame, bg=DARK_BLUE,  height=200, width=300)
@@ -112,12 +122,12 @@ args_entry = tk.Entry(functions_frame, textvariable=args_var, width=24)
 def show_info(opt_var):  # Describe the functions to the user
     opt = opt_var.get()
     if opt == "Extract files containing":
-        print(opt + ":\n" + "Extract a substring from a directory.\n")
+        print(opt + ":\n" + "Extracts any files that contain your entered argument into their own folder.\n")
     if opt == "Keep files containing":
         print(opt + ":\n" + "Keep all files that contain your entered argument. Moves everything else into another directory.\n")
     if opt == "Alphabetize folders":
-        print(opt + ":\n" + "Sorts all files in a directory into alphabetical folders.\nSpecify the number of letters per directory for the argument.\n")
-    if opt == "Extract all folders in directory":
+        print(opt + ":\n" + "Organizes all files in a directory into alphabetical folders.\nSpecify the number of letters per directory for the argument.\n")
+    if opt == "Extract all folders":
         print(opt + ":\n" + "Extract all folders in the directory. (This is useful for quickly reverting folder changes).\n")
     if opt == "Extract duplicates":
         print(opt + ":\n" + "This function will find all duplicate ROMs in the directory and move them to a folder for you to manage.\n")
@@ -130,7 +140,7 @@ def run_function(opt_var):
     opt = opt_var.get()
     curr_dir = dir_var.get()
     os.chdir(root_dir)
-    f = open("last_dir.txt", "w")
+    f = open("last_dir.dat", "w")
     f.write(curr_dir)
     f.close()
     args = args_var.get()
@@ -142,7 +152,7 @@ def run_function(opt_var):
                 print("Your argument is not long enough (2 characters minimum)!")
             else:
                 fo.extractSubStr(curr_dir, args)
-        if opt == "Extract all folders in directory":
+        if opt == "Extract all folders":
             fo.extractAllFolders(curr_dir)
         if opt == "Keep files containing":
             if len(opt) < 2:
@@ -172,7 +182,7 @@ OPTIONS = [
     "Extract files containing",
     "Keep files containing",
     "Alphabetize folders",
-    "Extract all folders in directory",
+    "Extract all folders",
     "Extract duplicates",
     "Extract extras"
 ]
@@ -180,12 +190,22 @@ OPTIONS = [
 opt_var = tk.StringVar(root)
 opt_var.set(OPTIONS[0])  # Default is 0
 
+def quit():
+    print("Quitting the program...")
+    X = root.winfo_width()
+    Y = root.winfo_height()
+    os.chdir(root_dir)
+    f = open("window_size.dat", "w")
+    f.write(str(X) + "x" + str(Y))
+    f.close()
+    root.destroy()
 functions_menu = tk.OptionMenu(functions_frame, opt_var, *OPTIONS)
 info_btn = tk.Button(functions_frame, text="Help", bg=DARK_GREY,
                      fg=LIGHT_BLUE, command=partial(show_info, opt_var), width=10)
 run_btn = tk.Button(functions_frame, text="Run", bg=DARK_GREY,
                     fg=LIGHT_BLUE, width=10, command=partial(run_function, opt_var))
-
+quit_btn = tk.Button(functions_frame, text="Quit", bg=DARK_GREY,
+                    fg=LIGHT_BLUE, width=8, command=quit)
 
 def pack_all():
     # dir stuff
@@ -210,6 +230,7 @@ def pack_all():
     args_label.grid(row=1, column=0)
     args_entry.grid(row=1, column=1)
     run_btn.grid(row=1, column=2)
+    quit_btn.grid(row=1, column=3)
     info_btn.grid(row=0, column=2)
 
 
